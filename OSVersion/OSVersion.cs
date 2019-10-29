@@ -7,8 +7,15 @@ using System.Management;
 
 namespace OSVersion
 {
+    /// <summary>
+    /// Windows OSのバージョン情報の取得/確認
+    /// </summary>
     class OSVersion
     {
+        //  参考URL)
+        //  https://docs.microsoft.com/ja-jp/windows/release-information/
+        //  https://ja.wikipedia.org/wiki/Microsoft_Windows_10#Redstone_2%EF%BC%88ver1703%EF%BC%89
+
         public const int v1507 = 1507;
         public const int v1511 = 1511;
         public const int v1607 = 1607;
@@ -37,6 +44,71 @@ namespace OSVersion
         /// </summary>
         /// <param name="version"></param>
         public OSVersion(int version)
+        {
+            CreateInstance(version);
+        }
+
+        /// <summary>
+        /// 文字列のBuildVersion, FullVersion、Aliasから
+        /// </summary>
+        /// <param name="fullVersion"></param>
+        public OSVersion(string fullVersion)
+        {
+            switch (fullVersion)
+            {
+                case "Released in July 2015":
+                case "10240":
+                case "10.0.10240":
+                    CreateInstance(v1507);
+                    break;
+                case "November Update":
+                case "10586":
+                case "10.0.10586":
+                    CreateInstance(v1511);
+                    break;
+                case "Anniversary Update":
+                case "14393":
+                case "10.0.14393":
+                    CreateInstance(v1607);
+                    break;
+                case "Creators Update":
+                case "15063":
+                case "10.0.15063":
+                    CreateInstance(v1703);
+                    break;
+                case "Fall Creators Update":
+                case "16299":
+                case "10.0.16299":
+                    CreateInstance(v1709);
+                    break;
+                case "April 2018 Update":
+                case "17134":
+                case "10.0.17134":
+                    CreateInstance(v1803);
+                    break;
+                case "October 2018 Update":
+                case "17763":
+                case "10.0.17763":
+                    CreateInstance(v1809);
+                    break;
+                case "May 2019 Update":
+                case "18362":
+                case "10.0.18362":
+                    CreateInstance(v1903);
+                    break;
+                case "November 2019 Update":
+                case "-----":
+                case "10.0.-----":
+                    CreateInstance(v1909);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// int型のVersionから対象のOSバージョン情報を生成
+        /// </summary>
+        /// <param name="version"></param>
+        private void CreateInstance(int version)
         {
             switch (version)
             {
@@ -106,24 +178,21 @@ namespace OSVersion
             }
         }
 
-
-
-        public OSVersion(string fullVersion)
-        {
-
-        }
-
-
-        public static OSVersion GetOSVersion()
+        /// <summary>
+        /// 実行中PCのOSバージョンを取得
+        /// </summary>
+        /// <returns></returns>
+        public static OSVersion GetThisPC()
         {
             ManagementObject mo = new ManagementClass("Win32_OperatingSystem").
                 GetInstances().
                 OfType<ManagementObject>().
                 First();
-            OSVersion osver = DefaultOSVersions.GetOSVersions().FirstOrDefault(x => x.FullVersion == mo["Version"].ToString());
-            osver.Edition = mo["Caption"] as string;
 
-            return osver;
+            //OSVersion osver = DefaultOSVersions.GetOSVersions().FirstOrDefault(x => x.FullVersion == mo["Version"].ToString());
+            //osver.Edition = mo["Caption"] as string;
+
+            return new OSVersion(mo["Version"] as string) { Edition = mo["Caption"] as string };
         }
 
         /// <summary>
@@ -142,7 +211,7 @@ namespace OSVersion
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator >(OSVersion x, OSVersion y) { return x.Version < y.Version; }
+        public static bool operator >(OSVersion x, OSVersion y) { return x.Version > y.Version; }
         public static bool operator >(OSVersion x, int y) { return x.Version > y; }
         public static bool operator >(int x, OSVersion y) { return x > y.Version; }
 
@@ -173,6 +242,8 @@ namespace OSVersion
         /// <param name="y"></param>
         /// <returns></returns>
         public static bool operator ==(OSVersion x, OSVersion y) { return x.Version == y.Version; }
+        public static bool operator ==(OSVersion x, int y) { return x.Version == y; }
+        public static bool operator ==(int x, OSVersion y) { return x == y.Version; }
 
         /// <summary>
         /// 比較演算子 !=
@@ -181,18 +252,43 @@ namespace OSVersion
         /// <param name="y"></param>
         /// <returns></returns>
         public static bool operator !=(OSVersion x, OSVersion y) { return x.Version != y.Version; }
+        public static bool operator !=(OSVersion x, int y) { return x.Version != y; }
+        public static bool operator !=(int x, OSVersion y) { return x != y.Version; }
 
         /// <summary>
-        /// Equals
+        /// Equals()
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public override bool Equals(object obj) { return this.Version == ((OSVersion)obj).Version; }
+        public override bool Equals(object obj)
+        {
+            switch (obj)
+            {
+                case OSVersion osver:
+                    return this.Version == osver.Version;
+                case int num:
+                    return this.Version == num;
+            }
+            return false;
+        }
 
         /// <summary>
-        /// GetHashCode
+        /// GetHashCode()
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode() { return base.GetHashCode(); }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        /// <summary>
+        /// ToString()
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this.Version.ToString();
+        }
+
     }
 }
