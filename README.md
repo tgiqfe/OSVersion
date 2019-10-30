@@ -4,7 +4,7 @@
 
 自分のPCのOSバージョンを取得
 ```csharp
-OSVersion thisPC = OSVersion.GetThisPC();
+OSVersion thisPC = OSVersion.Current();
 ```
 
 Windows 10 Ver. 1511 (November Update) と比較して、それより新しイバージョンかどうか  
@@ -31,5 +31,13 @@ if (thisPC > OSVersion.v1607)
 if (thisPC != 1511)
 {
     Console.WriteLine("このPCは、バージョン1703ではありません。");
+}
+```
+
+静的メソッドで取得した&lbrack;OSVersion&rbrack;と比較
+```powershell
+if(thisPC == OSVersion.GetVersion(1709))
+{
+    Console.WriteLine("このPCは、バージョン1709です。");
 }
 ```

@@ -10,7 +10,7 @@ namespace OSVersion
     {
         static void Main(string[] args)
         {
-            OSVersion thisPC = OSVersion.GetThisPC();
+            OSVersion thisPC = OSVersion.Current();
 
             OSVersion os1511 = new OSVersion(1511);
             if (thisPC > os1511)
@@ -25,7 +25,10 @@ namespace OSVersion
             {
                 Console.WriteLine("このPCは、バージョン1703ではありません。");
             }
-
+            if (thisPC == OSVersion.GetVersion(1709))
+            {
+                Console.WriteLine("このPCは、バージョン1709です。");
+            }
             Console.ReadLine();
         }
     }

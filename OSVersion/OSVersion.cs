@@ -182,17 +182,23 @@ namespace OSVersion
         /// 実行中PCのOSバージョンを取得
         /// </summary>
         /// <returns></returns>
-        public static OSVersion GetThisPC()
+        public static OSVersion Current()
         {
             ManagementObject mo = new ManagementClass("Win32_OperatingSystem").
                 GetInstances().
                 OfType<ManagementObject>().
                 First();
-
-            //OSVersion osver = DefaultOSVersions.GetOSVersions().FirstOrDefault(x => x.FullVersion == mo["Version"].ToString());
-            //osver.Edition = mo["Caption"] as string;
-
             return new OSVersion(mo["Version"] as string) { Edition = mo["Caption"] as string };
+        }
+
+        /// <summary>
+        /// 指定したバージョンのOSVersionインスタンスを取得
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public static OSVersion GetVersion(int version)
+        {
+            return new OSVersion(version);
         }
 
         /// <summary>
