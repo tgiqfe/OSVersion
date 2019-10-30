@@ -182,7 +182,7 @@ namespace OSVersion
         /// 実行中PCのOSバージョンを取得
         /// </summary>
         /// <returns></returns>
-        public static OSVersion Current()
+        public static OSVersion GetCurrent()
         {
             ManagementObject mo = new ManagementClass("Win32_OperatingSystem").
                 GetInstances().

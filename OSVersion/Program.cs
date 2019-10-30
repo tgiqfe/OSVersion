@@ -10,7 +10,7 @@ namespace OSVersion
     {
         static void Main(string[] args)
         {
-            OSVersion thisPC = OSVersion.Current();
+            OSVersion thisPC = OSVersion.GetCurrent();
 
             OSVersion os1511 = new OSVersion(1511);
             if (thisPC > os1511)

@@ -4,7 +4,7 @@
 
 自分のPCのOSバージョンを取得
 ```csharp
-OSVersion thisPC = OSVersion.Current();
+OSVersion thisPC = OSVersion.GetCurrent();
 ```
 
 Windows 10 Ver. 1511 (November Update) と比較して、それより新しイバージョンかどうか  
