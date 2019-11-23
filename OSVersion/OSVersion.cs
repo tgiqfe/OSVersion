@@ -31,7 +31,10 @@ namespace OSVersion
         public string Alias { get; set; }
         public string BuildNumber { get; set; }
         public string FullVersion { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }
+        public string EndSupportDate_HomePro { get; set; }
+        public string EndSupportDate_EntEdu { get; set; }
+        public string EndSupportDate_LTS { get; set; }
         public string Edition { get; set; }
 
         /// <summary>
@@ -117,63 +120,84 @@ namespace OSVersion
                     this.Alias = "Released in July 2015";
                     this.BuildNumber = "10240";
                     this.FullVersion = "10.0.10240";
-                    this.ReleaseDate = DateTime.Parse("2015/07/29");
+                    this.ReleaseDate = "2015/07/29";
+                    this.EndSupportDate_HomePro ="2017/05/09";
+                    this.EndSupportDate_EntEdu = "2017/05/09";
+                    this.EndSupportDate_LTS = "2025/10/24";
                     break;
                 case v1511:
                     this.Version = v1511;
                     this.Alias = "November Update";
                     this.BuildNumber = "10586";
                     this.FullVersion = "10.0.10586";
-                    this.ReleaseDate = DateTime.Parse("2015/11/12");
+                    this.ReleaseDate = "2015/11/12";
+                    this.EndSupportDate_HomePro = "2017/10/10";
+                    this.EndSupportDate_EntEdu = "2018/04/10";
                     break;
                 case v1607:
                     this.Version = v1607;
                     this.Alias = "Anniversary Update";
                     this.BuildNumber = "14393";
                     this.FullVersion = "10.0.14393";
-                    this.ReleaseDate = DateTime.Parse("2016/08/02");
+                    this.ReleaseDate = "2016/08/02";
+                    this.EndSupportDate_HomePro = "2018/04/10";
+                    this.EndSupportDate_EntEdu = "2019/04/09";
+                    this.EndSupportDate_LTS = "2026/10/13";
                     break;
                 case v1703:
                     this.Version = v1703;
                     this.Alias = "Creators Update";
                     this.BuildNumber = "15063";
                     this.FullVersion = "10.0.15063";
-                    this.ReleaseDate = DateTime.Parse("2017/04/11");
+                    this.ReleaseDate = "2017/04/11";
+                    this.EndSupportDate_HomePro = "2018/10/09";
+                    this.EndSupportDate_EntEdu = "2019/10/08";
                     break;
                 case v1709:
                     this.Version = v1709;
                     this.Alias = "Fall Creators Update";
                     this.BuildNumber = "16299";
                     this.FullVersion = "10.0.16299";
-                    this.ReleaseDate = DateTime.Parse("2017/10/17");
+                    this.ReleaseDate = "2017/10/17";
+                    this.EndSupportDate_HomePro = "2019/04/09";
+                    this.EndSupportDate_EntEdu = "2020/04/14";
                     break;
                 case v1803:
                     this.Version = v1803;
                     this.Alias = "April 2018 Update";
                     this.BuildNumber = "17134";
                     this.FullVersion = "10.0.17134";
-                    this.ReleaseDate = DateTime.Parse("2018/04/30");
+                    this.ReleaseDate = "2018/04/30";
+                    this.EndSupportDate_HomePro = "2019/11/12";
+                    this.EndSupportDate_EntEdu = "2020/11/10";
                     break;
                 case v1809:
                     this.Version = v1809;
                     this.Alias = "October 2018 Update";
                     this.BuildNumber = "17763";
                     this.FullVersion = "10.0.17763";
-                    this.ReleaseDate = DateTime.Parse("2018/11/13");
+                    this.ReleaseDate = "2018/11/13";
+                    this.EndSupportDate_HomePro = "2020/05/12";
+                    this.EndSupportDate_EntEdu = "2021/05/11";
+                    this.EndSupportDate_LTS = "2029/01/09";
                     break;
                 case v1903:
                     this.Version = v1903;
                     this.Alias = "May 2019 Update";
                     this.BuildNumber = "18362";
                     this.FullVersion = "10.0.18362";
-                    this.ReleaseDate = DateTime.Parse("2019/05/21");
+                    this.ReleaseDate = "2019/05/21";
+                    this.EndSupportDate_HomePro = "2020/12/08";
+                    this.EndSupportDate_EntEdu = "2021/12/07";
                     break;
                 case v1909:
-                    Version = v1909;
-                    Alias = "November 2019 Update";
-                    BuildNumber = "-----";
-                    FullVersion = "10.0.-----";
-                    ReleaseDate = DateTime.Parse("2019/11/11");  //  ←まだ不明
+                    this.Version = v1909;
+                    this.Alias = "November 2019 Update";
+                    this.BuildNumber = "18636";
+                    this.FullVersion = "10.0.18636";
+                    this.ReleaseDate = "2019/11/12";
+                    this.EndSupportDate_HomePro = "2021/05/11";
+                    this.EndSupportDate_EntEdu = "2022/05/10";
                     break;
             }
         }
