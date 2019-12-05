@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management;
+using System.Text.RegularExpressions;
 
 namespace OSVersion
 {
@@ -59,49 +60,58 @@ namespace OSVersion
         {
             switch (fullVersion)
             {
+                case "1507":
                 case "Released in July 2015":
                 case "10240":
                 case "10.0.10240":
                     CreateInstance(v1507);
                     break;
+                case "1511":
                 case "November Update":
                 case "10586":
                 case "10.0.10586":
                     CreateInstance(v1511);
                     break;
+                case "1607":
                 case "Anniversary Update":
                 case "14393":
                 case "10.0.14393":
                     CreateInstance(v1607);
                     break;
+                case "1703":
                 case "Creators Update":
                 case "15063":
                 case "10.0.15063":
                     CreateInstance(v1703);
                     break;
+                case "1709":
                 case "Fall Creators Update":
                 case "16299":
                 case "10.0.16299":
                     CreateInstance(v1709);
                     break;
+                case "1803":
                 case "April 2018 Update":
                 case "17134":
                 case "10.0.17134":
                     CreateInstance(v1803);
                     break;
+                case "1809":
                 case "October 2018 Update":
                 case "17763":
                 case "10.0.17763":
                     CreateInstance(v1809);
                     break;
+                case "1903":
                 case "May 2019 Update":
                 case "18362":
                 case "10.0.18362":
                     CreateInstance(v1903);
                     break;
+                case "1909":
                 case "November 2019 Update":
-                case "-----":
-                case "10.0.-----":
+                case "18363":
+                case "10.0.18363":
                     CreateInstance(v1909);
                     break;
             }
@@ -121,7 +131,7 @@ namespace OSVersion
                     this.BuildNumber = "10240";
                     this.FullVersion = "10.0.10240";
                     this.ReleaseDate = "2015/07/29";
-                    this.EndSupportDate_HomePro ="2017/05/09";
+                    this.EndSupportDate_HomePro = "2017/05/09";
                     this.EndSupportDate_EntEdu = "2017/05/09";
                     this.EndSupportDate_LTS = "2025/10/24";
                     break;
@@ -226,6 +236,46 @@ namespace OSVersion
         }
 
         /// <summary>
+        /// 指定したバージョンのOSVersionインスタンスの配列を取得
+        /// </summary>
+        /// <param name="versions"></param>
+        /// <returns></returns>
+        public static OSVersion[] GetVersion(int[] versions)
+        {
+            return versions.Select(x => new OSVersion(x)).ToArray();
+        }
+
+        /// <summary>
+        /// 指定したバージョンのOSVersionインスタンスを取得
+        /// </summary>
+        /// <param name="fullVersion"></param>
+        /// <returns></returns>
+        public static OSVersion[] GetVersion(string fullVersion)
+        {
+            return GetVersion(new string[1] { fullVersion });
+        }
+
+        /// <summary>
+        /// 指定したバージョンのOSVersionインスタンスの配列を取得
+        /// </summary>
+        /// <param name="fullVersions"></param>
+        /// <returns></returns>
+        public static OSVersion[] GetVersion(string[] fullVersions)
+        {
+            List<OSVersion> osVersionList = new List<OSVersion>();
+            Regex reg_comma = new Regex(@",\s?");
+            foreach (string fullVersion in fullVersions)
+            {
+                foreach (string version in reg_comma.Split(fullVersion))
+                {
+                    osVersionList.Add(new OSVersion(version));
+                }
+            }
+            return osVersionList.ToArray();
+        }
+
+        #region Operator
+        /// <summary>
         /// 比較演算子 < 小なり
         /// </summary>
         /// <param name="x"></param>
@@ -319,6 +369,6 @@ namespace OSVersion
         {
             return this.Version.ToString();
         }
-
+        #endregion
     }
 }

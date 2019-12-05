@@ -29,6 +29,12 @@ namespace OSVersion
             {
                 Console.WriteLine("このPCは、バージョン1709です。");
             }
+
+            var versions = OSVersion.GetVersion(
+                new string[] { "1507, 1607, 1809", "1803", "1909", "" }
+                ).Select(x => x.ToString()).ToArray();
+            Console.WriteLine(string.Join("=", versions));
+
             Console.ReadLine();
         }
     }
