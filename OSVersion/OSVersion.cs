@@ -266,6 +266,7 @@ namespace OSVersion
             Regex reg_comma = new Regex(@",\s?");
             foreach (string fullVersion in fullVersions)
             {
+                if (string.IsNullOrEmpty(fullVersion)) { continue; }
                 foreach (string version in reg_comma.Split(fullVersion))
                 {
                     osVersionList.Add(new OSVersion(version));
@@ -335,6 +336,8 @@ namespace OSVersion
         public static bool operator !=(OSVersion x, int y) { return x.Version != y; }
         public static bool operator !=(int x, OSVersion y) { return x != y.Version; }
 
+        #endregion
+
         /// <summary>
         /// Equals()
         /// </summary>
@@ -369,6 +372,5 @@ namespace OSVersion
         {
             return this.Version.ToString();
         }
-        #endregion
     }
 }
