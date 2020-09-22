@@ -12,6 +12,22 @@ namespace OSVersion
         {
             OSVersion thisPC = OSVersion.GetCurrent();
 
+            Console.WriteLine(
+                "Name: {0}\r\n" +
+                "Version: {1}\r\n" +
+                "Alias: {2}\r\n" +
+                "BuildNumber: {3}\r\n" +
+                "FullVersion: {4}\r\n" +
+                "ReleaseDate: {5}\r\n" +
+                "EndSupportDate_HomePro: {6}\r\n" +
+                "EndSupportDate_EntEdu: {7}\r\n" +
+                "EndSupportDate_LTS: {8}\r\n" +
+                "Edition: {9}",
+                    thisPC.Name, thisPC.Version, thisPC.Alias, thisPC.BuildNumber, thisPC.FullVersion,
+                    thisPC.ReleaseDate, thisPC.EndSupportDate_HomePro, thisPC.EndSupportDate_EntEdu,
+                    thisPC.EndSupportDate_LTS, thisPC.Edition);
+            Console.WriteLine();
+
             OSVersion os1511 = new OSVersion(1511);
             if (thisPC > os1511)
             {

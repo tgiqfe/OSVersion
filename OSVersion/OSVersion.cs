@@ -26,6 +26,7 @@ namespace OSVersion
         public const int v1809 = 1809;
         public const int v1903 = 1903;
         public const int v1909 = 1909;
+        public const int v2004 = 2004;
 
         public string Name { get { return this.Version.ToString(); } }
         public int Version { get; set; }
@@ -113,6 +114,12 @@ namespace OSVersion
                 case "18363":
                 case "10.0.18363":
                     CreateInstance(v1909);
+                    break;
+                case "2004":
+                case "May 2020 Update":
+                case "19041":
+                case "10.0.19041":
+                    CreateInstance(v2004);
                     break;
             }
         }
@@ -209,6 +216,15 @@ namespace OSVersion
                     this.EndSupportDate_HomePro = "2021/05/11";
                     this.EndSupportDate_EntEdu = "2022/05/10";
                     break;
+                case v2004:
+                    this.Version = v2004;
+                    this.Alias = "May 2020 Update";
+                    this.BuildNumber = "19041";
+                    this.FullVersion = "10.0.19041";
+                    this.ReleaseDate = "2020/05/27";
+                    this.EndSupportDate_HomePro = "2021/12/14";
+                    this.EndSupportDate_EntEdu = "2021/12/14";
+                    break;
             }
         }
 
@@ -276,6 +292,7 @@ namespace OSVersion
         }
 
         #region Operator
+
         /// <summary>
         /// 比較演算子 < 小なり
         /// </summary>
@@ -336,8 +353,6 @@ namespace OSVersion
         public static bool operator !=(OSVersion x, int y) { return x.Version != y; }
         public static bool operator !=(int x, OSVersion y) { return x != y.Version; }
 
-        #endregion
-
         /// <summary>
         /// Equals()
         /// </summary>
@@ -354,6 +369,8 @@ namespace OSVersion
             }
             return false;
         }
+
+        #endregion
 
         /// <summary>
         /// GetHashCode()
