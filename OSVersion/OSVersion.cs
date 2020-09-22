@@ -11,7 +11,7 @@ namespace OSVersion
     /// <summary>
     /// Windows OSのバージョン情報の取得/確認
     /// </summary>
-    class OSVersion
+    public class OSVersion
     {
         //  参考URL)
         //  https://docs.microsoft.com/ja-jp/windows/release-information/
