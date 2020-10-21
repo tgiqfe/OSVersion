@@ -45,6 +45,11 @@ namespace OSVersion
             {
                 Console.WriteLine("このPCは、バージョン1709です。");
             }
+            if (thisPC < OSVersion.GetVersion(2010))
+            {
+                Console.WriteLine("このPCは、バージョン20H2より古いです。");
+            }
+
 
             var versions = OSVersion.GetVersion(
                 new string[] { "1507, 1607, 1809", "1803", "1909", "" }

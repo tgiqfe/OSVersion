@@ -27,6 +27,7 @@ namespace OSVersion
         public const int v1903 = 1903;
         public const int v1909 = 1909;
         public const int v2004 = 2004;
+        public const int v20H2 = 2010;      //  バージョン名は「20H2」だが、10月にリリースされたので「2010」として扱う。
 
         public string Name { get { return this.Version.ToString(); } }
         public int Version { get; set; }
@@ -120,6 +121,13 @@ namespace OSVersion
                 case "19041":
                 case "10.0.19041":
                     CreateInstance(v2004);
+                    break;
+                case "2010":
+                case "20H2":
+                case "October 2020 Update":
+                case "19042":
+                case "10.0.19042":
+                    CreateInstance(v20H2);
                     break;
             }
         }
@@ -224,6 +232,15 @@ namespace OSVersion
                     this.ReleaseDate = "2020/05/27";
                     this.EndSupportDate_HomePro = "2021/12/14";
                     this.EndSupportDate_EntEdu = "2021/12/14";
+                    break;
+                case v20H2:
+                    this.Version = v20H2;
+                    this.Alias = "October 2020 Update";
+                    this.BuildNumber = "19042";
+                    this.FullVersion = "10.0.19042";
+                    this.ReleaseDate = "2020/10/20";
+                    this.EndSupportDate_HomePro = "2022/05/10";
+                    this.EndSupportDate_EntEdu = "2023/05/09";
                     break;
             }
         }
