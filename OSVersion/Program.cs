@@ -24,11 +24,11 @@ namespace OSVersion
                 "EndSupportDate_LTS: {8}\r\n" +
                 "Edition: {9}",
                     thisPC.Name, thisPC.Version, thisPC.Alias, thisPC.BuildNumber, thisPC.FullVersion,
-                    thisPC.ReleaseDate, thisPC.EndSupportDate_HomePro, thisPC.EndSupportDate_EntEdu,
-                    thisPC.EndSupportDate_LTS, thisPC.Edition);
+                    thisPC.ReleaseDate, thisPC.EndSupport_HomePro, thisPC.EndSupport_EntEdu,
+                    thisPC.EndSupport_LTS, thisPC.Edition);
             Console.WriteLine();
 
-            OSVersion os1511 = new OSVersion(1511);
+            OSVersion os1511 = new OSVersion(VersionName.v1511);
             if (thisPC > os1511)
             {
                 Console.WriteLine("このPCは、バージョン1511より新しいです。");
@@ -54,7 +54,7 @@ namespace OSVersion
             var versions = OSVersion.GetVersion(
                 new string[] { "1507, 1607, 1809", "1803", "1909", "" }
                 ).Select(x => x.ToString()).ToArray();
-            Console.WriteLine(string.Join("=", versions));
+            Console.WriteLine(string.Join("|", versions));
 
             Console.ReadLine();
         }
