@@ -47,5 +47,9 @@ namespace OSVersion.Lib
         public bool? EmbeddedOS { get; set; }
 
         #endregion
+
+        protected int Serial { get; }
+
+
     }
 }
