@@ -9,8 +9,8 @@ namespace OSVersion.Lib
     internal class OSCompare : OSInfo
     {
 
-        //  ここでoperatorメソッドを
 
+        #region ==
 
         /// <summary>
         /// == operator。両方OSCompareインスタンス
@@ -26,6 +26,25 @@ namespace OSVersion.Lib
         }
 
         /// <summary>
+        /// == operator。左辺がCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator ==(OSCompare x, int y) { return x is not null ? x.Serial == y : false; }
+
+        /// <summary>
+        /// == operator。右辺がCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator ==(int x, OSCompare y) { return y is not null ? x == y.Serial : false; }
+
+        #endregion
+        #region !=
+
+        /// <summary>
         /// != operator。両方OSCompareインスタンス
         /// </summary>
         /// <param name="x"></param>
@@ -33,11 +52,28 @@ namespace OSVersion.Lib
         /// <returns></returns>
         public static bool operator !=(OSCompare x, OSCompare y)
         {
-            if(x is not null && y is not null) { return x.Serial != y.Serial; }
-            if(x is null && y is null) { return false; }
+            if (x is not null && y is not null) { return x.Serial != y.Serial; }
+            if (x is null && y is null) { return false; }
             return true;
         }
 
+        /// <summary>
+        /// != operator。左辺がCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator !=(OSCompare x, int y) { return x is not null ? x.Serial != y : true; }
+
+        /// <summary>
+        /// != operator。右辺がCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator !=(int x, OSCompare y) { return y is not null ? x != y.Serial : true; }
+
+        #endregion
 
 
 
