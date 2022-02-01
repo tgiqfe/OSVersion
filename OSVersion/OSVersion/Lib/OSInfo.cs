@@ -11,6 +11,12 @@ namespace OSVersion.Lib
         #region Public parameter
 
         /// <summary>
+        /// OS種類。Windows/Linux/Mac
+        /// ※今回のバージョンでは全部Windows
+        /// </summary>
+        public OSFamily OSFamily { get; set; }
+
+        /// <summary>
         /// OSの名前
         /// </summary>
         public string Name { get; set; }
@@ -19,12 +25,6 @@ namespace OSVersion.Lib
         /// OS名のエイリアス
         /// </summary>
         public string[] Alias { get; set; }
-
-        /// <summary>
-        /// OS種類。Windows/Linux/Mac
-        /// ※今回のバージョンでは全部Windows
-        /// </summary>
-        public OSFamily OSFamily { get; set; }
 
         /// <summary>
         /// バージョン名称
@@ -48,8 +48,9 @@ namespace OSVersion.Lib
 
         #endregion
 
+        /// <summary>
+        /// 単純なバージョン比較用
+        /// </summary>
         protected int Serial { get; }
-
-
     }
 }
