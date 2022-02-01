@@ -11,57 +11,110 @@ namespace OSVersion.Lib
         #region <
 
         /// <summary>
-        /// < operator。両方OSCompareインスタンス
+        /// 小なりoperator。両方OSCompareインスタンス
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator <(OSCompare x, OSCompare y)
-        {
-            return x is not null && y is not null ? x.Serial < y.Serial : false;
-        }
+        public static bool operator <(OSCompare x, OSCompare y) { return x is not null && y is not null ? x.Serial < y.Serial : false; }
+
+        /// <summary>
+        /// 小なりoperator。左辺のみOSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator <(OSCompare x, int y) { return x is not null ? x.Serial < y : false; }
+
+        /// <summary>
+        /// 小なりoperator。右辺のみOSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator <(int x, OSCompare y) { return y is not null ? x < y.Serial : false; }
 
         #endregion
         #region >
 
         /// <summary>
-        /// >
+        /// 大なりoperator。両方OSCompareインスタンス
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator >(OSCompare x, OSCompare y)
-        {
-            return x is not null && y is not null ? x.Serial > y.Serial : false;
-        }
+        public static bool operator >(OSCompare x, OSCompare y) { return x is not null && y is not null ? x.Serial > y.Serial : false; }
+
+        /// <summary>
+        /// 大なりoperator。左辺のみOSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator >(OSCompare x, int y) { return x is not null ? x.Serial > y : false; }
+
+        /// <summary>
+        /// 大なりoperator。右辺のみOSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator >(int x, OSCompare y) { return y is not null ? x > y.Serial : false; }
+
 
         #endregion
         #region <=
 
         /// <summary>
-        /// <= operator。両方OSCompareインスタンス
+        /// 小なりイコールoperator。両方OSCompareインスタンス
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator <=(OSCompare x, OSCompare y)
-        {
-            return x is not null && y is not null ? x.Serial <= y.Serial : false;
-        }
+        public static bool operator <=(OSCompare x, OSCompare y) { return x is not null && y is not null ? x.Serial <= y.Serial : false; }
+
+        /// <summary>
+        /// 小なりイコールoperator。左辺のみOSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator <=(OSCompare x, int y) { return x is not null ? x.Serial <= y : false; }
+
+        /// <summary>
+        /// 小なりイコールoperator。右辺のみOSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator <=(int x, OSCompare y) { return y is not null ? x <= y.Serial : false; }
 
         #endregion
         #region >=
 
         /// <summary>
-        /// >= operator。両方OSCompareインスタンス
+        /// 大なりイコールoperator。両方OSCompareインスタンス
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator >=(OSCompare x, OSCompare y)
-        {
-            return x is not null && y is not null ? x.Serial >= y.Serial : false;
-        }
+        public static bool operator >=(OSCompare x, OSCompare y) { return x is not null && y is not null ? x.Serial >= y.Serial : false; }
+
+        /// <summary>
+        /// 大なりイコールoperator。左辺のみOSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator >=(OSCompare x, int y) { return x is not null ? x.Serial >= y : false; }
+
+        /// <summary>
+        /// 大なりイコールoperator。右辺のみOSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator >=(int x, OSCompare y) { return y is not null ? x >= y.Serial : false; }
 
         #endregion
 
