@@ -8,7 +8,62 @@ namespace OSVersion.Lib
 {
     internal class OSCompare : OSInfo
     {
+        #region <
 
+        /// <summary>
+        /// < operator。両方OSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator <(OSCompare x, OSCompare y)
+        {
+            return x is not null && y is not null ? x.Serial < y.Serial : false;
+        }
+
+        #endregion
+        #region >
+
+        /// <summary>
+        /// >
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator >(OSCompare x, OSCompare y)
+        {
+            return x is not null && y is not null ? x.Serial > y.Serial : false;
+        }
+
+        #endregion
+        #region <=
+
+        /// <summary>
+        /// <= operator。両方OSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator <=(OSCompare x, OSCompare y)
+        {
+            return x is not null && y is not null ? x.Serial <= y.Serial : false;
+        }
+
+        #endregion
+        #region >=
+
+        /// <summary>
+        /// >= operator。両方OSCompareインスタンス
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator >=(OSCompare x, OSCompare y)
+        {
+            return x is not null && y is not null ? x.Serial >= y.Serial : false;
+        }
+
+        #endregion
 
         #region ==
 
@@ -74,9 +129,6 @@ namespace OSVersion.Lib
         public static bool operator !=(int x, OSCompare y) { return y is not null ? x != y.Serial : true; }
 
         #endregion
-
-
-
 
         public override bool Equals(object obj)
         {
