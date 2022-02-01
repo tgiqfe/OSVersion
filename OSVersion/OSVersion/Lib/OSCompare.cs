@@ -16,7 +16,10 @@ namespace OSVersion.Lib
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator <(OSCompare x, OSCompare y) { return x is not null && y is not null ? x.Serial < y.Serial : false; }
+        public static bool operator <(OSCompare x, OSCompare y)
+        {
+            return x is not null && y is not null ? (x.Name == y.Name && x.Serial < y.Serial) : false;
+        }
 
         /// <summary>
         /// 小なりoperator。左辺のみOSCompareインスタンス
@@ -43,7 +46,10 @@ namespace OSVersion.Lib
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator >(OSCompare x, OSCompare y) { return x is not null && y is not null ? x.Serial > y.Serial : false; }
+        public static bool operator >(OSCompare x, OSCompare y)
+        {
+            return x is not null && y is not null ? (x.Name == y.Name && x.Serial > y.Serial) : false;
+        }
 
         /// <summary>
         /// 大なりoperator。左辺のみOSCompareインスタンス
@@ -71,7 +77,10 @@ namespace OSVersion.Lib
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator <=(OSCompare x, OSCompare y) { return x is not null && y is not null ? x.Serial <= y.Serial : false; }
+        public static bool operator <=(OSCompare x, OSCompare y)
+        {
+            return x is not null && y is not null ? (x.Name == y.Name && x.Serial <= y.Serial) : false;
+        }
 
         /// <summary>
         /// 小なりイコールoperator。左辺のみOSCompareインスタンス
@@ -98,7 +107,10 @@ namespace OSVersion.Lib
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static bool operator >=(OSCompare x, OSCompare y) { return x is not null && y is not null ? x.Serial >= y.Serial : false; }
+        public static bool operator >=(OSCompare x, OSCompare y)
+        {
+            return x is not null && y is not null ? (x.Name == y.Name && x.Serial >= y.Serial) : false;
+        }
 
         /// <summary>
         /// 大なりイコールoperator。左辺のみOSCompareインスタンス
@@ -117,7 +129,6 @@ namespace OSVersion.Lib
         public static bool operator >=(int x, OSCompare y) { return y is not null ? x >= y.Serial : false; }
 
         #endregion
-
         #region ==
 
         /// <summary>
@@ -128,7 +139,7 @@ namespace OSVersion.Lib
         /// <returns></returns>
         public static bool operator ==(OSCompare x, OSCompare y)
         {
-            if (x is not null && y is not null) { return x.Serial == y.Serial; }
+            if (x is not null && y is not null) { return x.Name == y.Name && x.Serial == y.Serial; }
             if (x is null && y is null) { return true; }
             return false;
         }
@@ -160,7 +171,7 @@ namespace OSVersion.Lib
         /// <returns></returns>
         public static bool operator !=(OSCompare x, OSCompare y)
         {
-            if (x is not null && y is not null) { return x.Serial != y.Serial; }
+            if (x is not null && y is not null) { return x.Name != y.Name || x.Serial != y.Serial; }
             if (x is null && y is null) { return false; }
             return true;
         }
