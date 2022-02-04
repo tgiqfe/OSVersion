@@ -14,7 +14,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
                 VersionName = "10.0.10240",
                 VersionAlias = new string[] { "Released in July 2015", "ReleasedinJuly2015", "Threshold 1", "Threshold1" },
                 ServerOS = false,
@@ -48,7 +48,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -65,7 +65,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -82,7 +82,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -99,7 +99,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -116,7 +116,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -133,7 +133,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -150,7 +150,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -167,7 +167,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -184,7 +184,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -201,7 +201,7 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
 
                 ServerOS = false,
@@ -218,8 +218,24 @@ namespace OSVersion.Lib
             {
                 OSFamily = OSFamily.Windows,
                 Name = "Windows 10",
-                Alias = new string[] { "Windows10", "Windows_10" },
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
 
+
+                ServerOS = false,
+                EmbeddedOS = false,
+            };
+        }
+    }
+
+    internal class Windows11_21H2
+    {
+        public static WindowsOS Create()
+        {
+            return new WindowsOS()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows 11",
+                Alias = new string[] { "Windows11", "Windows_11", "Win11" },
 
                 ServerOS = false,
                 EmbeddedOS = false,
