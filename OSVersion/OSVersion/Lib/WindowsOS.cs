@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OSVersion.Lib
 {
-    internal class WindowsOS : OSCompare
+    internal partial class WindowsOS
     {
     }
 }
