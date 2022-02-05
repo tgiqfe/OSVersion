@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace OSVersion.Lib
 {
-    internal partial class  WindowsOS : OSCompare
+    internal class WindowsServer2012
     {
+        public static WindowsOS Create()
+        {
+            return new WindowsOS()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows Server",
+                Alias = new string[] { "WindowsSevrer2012", "WinSrv2012" },
+
+            };
+        }
     }
 }
