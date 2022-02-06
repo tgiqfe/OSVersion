@@ -15,7 +15,19 @@ namespace OSVersion.Lib
                 OSFamily = OSFamily.Windows,
                 Name = "Windows Server",
                 Alias = new string[] { "WindowsSevrer2012", "WinSrv2012" },
+            };
+        }
+    }
 
+    internal class WindowsServer2012R2
+    {
+        public static WindowsOS Create()
+        {
+            return new WindowsOS()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows Server",
+                Alias = new string[] { "WindowsSevrer2012R2", "WinSrv2012R2" },
             };
         }
     }
