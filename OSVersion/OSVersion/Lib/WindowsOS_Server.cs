@@ -31,4 +31,17 @@ namespace OSVersion.Lib
             };
         }
     }
+
+    internal class WindowsServer2016
+    {
+        public static WindowsOS Create()
+        {
+            return new WindowsOS()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows Server",
+                Alias = new string[] { "WindowsSevrer2016", "WinSrv2016" },
+            };
+        }
+    }
 }
