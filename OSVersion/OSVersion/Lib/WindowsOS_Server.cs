@@ -44,4 +44,17 @@ namespace OSVersion.Lib
             };
         }
     }
+
+    internal class WindowsServer2019
+    {
+        public static WindowsOS Create()
+        {
+            return new WindowsOS()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows Server",
+                Alias = new string[] { "WindowsSevrer2019", "WinSrv2019" },
+            };
+        }
+    }
 }
