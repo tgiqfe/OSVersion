@@ -6,6 +6,34 @@ using System.Threading.Tasks;
 
 namespace OSVersion.Lib
 {
+    internal class Windows10
+    {
+        public static WindowsOS Create()
+        {
+            return new WindowsOS()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows 10",
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
+                ServerOS = false,
+                EmbeddedOS = false,
+            };
+        }
+
+        public static WindowsOS Create(int version)
+        {
+            var windowsOS = new WindowsOS()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows 10",
+                Alias = new string[] { "Windows10", "Windows_10", "Win10" },
+            };
+            windowsOS.VersionName = version.ToString();
+            return windowsOS;
+        }
+    }
+
+
     internal class Windows10_1507
     {
         public static WindowsOS Create()
