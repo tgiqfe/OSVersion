@@ -34,6 +34,15 @@ namespace OSVersion.Lib.Windows
                 },
                 Description = "Windows 10のリリース後の次のバージョン"
             });
+            list.Add(new OSVersions()
+            {
+                Name = "1607",
+                Candidate = new string[]
+                {
+                    "1607", "v1607"
+                },
+                Description = ""
+            });
 
 
 
