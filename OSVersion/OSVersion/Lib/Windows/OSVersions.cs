@@ -10,17 +10,32 @@ namespace OSVersion.Lib.Windows
     {
         public string Name { get; set; }
         public string[] Candidate { get; set; }
+        public string Description { get; set; }
 
         public static OSVersions[] GetVersions()
         {
-            new OSVersions()
+            List<OSVersions> list = new List<OSVersions>();
+
+            list.Add(new OSVersions()
             {
                 Name = "1507",
                 Candidate = new string[]
                 {
-                    "1507", "10.0.10240", "Released in July 2015", "ReleasedinJuly2015", "Threshold 1", "Threshold1"
-                }
-            };
+                    "1507", "v1507", "10.0.10240", "Released in July 2015", "ReleasedinJuly2015", "Threshold 1", "Threshold1"
+                },
+                Description = "Windows 10のリリース時バージョン"
+            });
+            list.Add(new OSVersions()
+            {
+                Name = "1511",
+                Candidate = new string[]
+                {
+                    "1511", "v1511"
+                },
+                Description = "Windows 10のリリース後の次のバージョン"
+            });
+
+
 
 
             return null;
