@@ -52,6 +52,15 @@ namespace OSVersion.Lib.Windows
                 },
                 Description = ""
             });
+            list.Add(new OSVersions()
+            {
+                Name = "1709",
+                Candidate = new string[]
+                {
+                    "1709", "v1709"
+                },
+                Description = ""
+            });
 
 
             return null;
