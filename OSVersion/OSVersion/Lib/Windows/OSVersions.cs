@@ -76,6 +76,12 @@ namespace OSVersion.Lib.Windows
                 Candidate = new string[] { "20H2", "v20H2" },
                 Description = ""
             });
+            list.Add(new OSVersions()
+            {
+                Name = "21H1",
+                Candidate = new string[] { "21H1", "v21H1" },
+                Description = ""
+            });
 
 
             return null;
