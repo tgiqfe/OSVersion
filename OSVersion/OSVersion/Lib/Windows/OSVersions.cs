@@ -52,6 +52,36 @@ namespace OSVersion.Lib.Windows
                 Candidate = new string[] { "1803", "v1803" },
                 Description = ""
             });
+            list.Add(new OSVersions()
+            {
+                Name = "1809",
+                Candidate = new string[] { "1809", "v1809" },
+                Description = ""
+            });
+            list.Add(new OSVersions()
+            {
+                Name = "1903",
+                Candidate = new string[] { "1903", "v1903" },
+                Description = ""
+            });
+            list.Add(new OSVersions()
+            {
+                Name = "2004",
+                Candidate = new string[] { "2004", "v2004" },
+                Description = ""
+            });
+            list.Add(new OSVersions()
+            {
+                Name = "20H2",
+                Candidate = new string[] { "20H2", "v20H2" },
+                Description = ""
+            });
+            list.Add(new OSVersions()
+            {
+                Name = "21H1",
+                Candidate = new string[] { "21H1", "v21H1" },
+                Description = ""
+            });
 
 
             return null;
