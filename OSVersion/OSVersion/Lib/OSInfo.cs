@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace OSVersion.Lib
 {
@@ -52,5 +53,26 @@ namespace OSVersion.Lib
         protected virtual int Serial { get; }
 
         #endregion
+
+        private static WindowsOSCollection windowsCollection = null;
+
+        public static OSInfo GetCurrent(string dbDir)
+        {
+            if (OperatingSystem.IsWindows())
+            {
+                return WindowsOS.GetCurrent(windowsCollection, dbDir);
+            }
+            else if (OperatingSystem.IsMacOS())
+            {
+
+            }
+            else if (OperatingSystem.IsLinux())
+            {
+
+            }
+
+
+            return null;
+        }
     }
 }
