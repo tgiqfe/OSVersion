@@ -33,7 +33,6 @@ namespace OSVersion.Lib
         }
     }
 
-
     internal class Windows10_1507
     {
         public static WindowsOS Create()
