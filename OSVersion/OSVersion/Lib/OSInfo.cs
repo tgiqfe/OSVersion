@@ -46,11 +46,11 @@ namespace OSVersion.Lib
         /// </summary>
         public bool? EmbeddedOS { get; set; }
 
-        #endregion
-
         /// <summary>
         /// 単純なバージョン比較用
         /// </summary>
-        protected int Serial { get; }
+        protected virtual int Serial { get; set; }
+
+        #endregion
     }
 }
