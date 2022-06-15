@@ -9,17 +9,31 @@ using System.IO;
 
 namespace OSVersion.Lib
 {
+    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     internal class WindowsOSCollection : List<WindowsOS>
     {
         const string dbFileName = "windowsOSCollection.json";
 
         public void LoadDefault()
         {
-            //
-            //
-            //  ここにデフォルト値を読み込む処理を記述
-            //
-            //
+            this.Add(Windows10.Create1507());
+            this.Add(Windows10.Create1607());
+            this.Add(Windows10.Create1703());
+            this.Add(Windows10.Create1709());
+            this.Add(Windows10.Create1803());
+            this.Add(Windows10.Create1809());
+            this.Add(Windows10.Create1903());
+            this.Add(Windows10.Create1909());
+            this.Add(Windows10.Create2004());
+            this.Add(Windows10.Create20H2());
+            this.Add(Windows10.Create21H1());
+            this.Add(Windows10.Create21H2());
+            this.Add(Windows11.Create21H2());
+            this.Add(WindowsServer.Create2012());
+            this.Add(WindowsServer.Create2012R2());
+            this.Add(WindowsServer.Create2016());
+            this.Add(WindowsServer.Create2019());
+            this.Add(WindowsServer.Create2022());
         }
 
         #region Load/Save
@@ -38,7 +52,14 @@ namespace OSVersion.Lib
                 string dbPath = Path.Combine(dbDirectory, dbFileName);
                 using (var sr = new StreamReader(dbPath, Encoding.UTF8))
                 {
-                    result = JsonSerializer.Deserialize<WindowsOSCollection>(sr.ReadToEnd());
+                    result = JsonSerializer.Deserialize<WindowsOSCollection>(sr.ReadToEnd(), new JsonSerializerOptions()
+                    {
+                        //Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                        IgnoreReadOnlyProperties = true,
+                        DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true,
+                        Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter(System.Text.Json.JsonNamingPolicy.CamelCase) },
+                    });
                 }
             }
             catch { }
@@ -66,8 +87,11 @@ namespace OSVersion.Lib
             {
                 string json = JsonSerializer.Serialize(this, new JsonSerializerOptions()
                 {
+                    //Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    IgnoreReadOnlyProperties = true,
+                    DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
                     WriteIndented = true,
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+                    Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter(System.Text.Json.JsonNamingPolicy.CamelCase) },
                 });
                 sw.WriteLine(json);
             }
