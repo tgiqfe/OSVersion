@@ -3,6 +3,9 @@ namespace OSVersion.Lib
 {
     #region Windows Server
 
+    /// <summary>
+    /// Windows Server生成用クラス
+    /// </summary>
     internal class WindowsServer
     {
         public static WindowsOS Create2012()
@@ -68,17 +71,3 @@ namespace OSVersion.Lib
 
     #endregion
 }
-
-
-/*
-
-めも
-https://ja.wikipedia.org/wiki/Windows_Server
-
-2012年 	Windows Server 2012 	NT 6.2 	9200 	2023年10月10日[13]
-2013年 	Windows Server 2012 R2 	NT 6.3 	9600
-2016年 	Windows Server 2016 	NT 10.0 	14393 	2027年1月12日[14]
-2018年 	Windows Server 2019 	NT 10.0 	17763 	2029年1月9日[15]
-2021年 	Windows Server 2022 	NT 10.0 	20348 	2031年10月14日[16]
-
-*/
