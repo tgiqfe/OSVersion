@@ -49,7 +49,7 @@ namespace OSVersion.Lib
         /// <summary>
         /// 単純なバージョン比較用
         /// </summary>
-        protected virtual int Serial { get; set; }
+        protected virtual int Serial { get; }
 
         #endregion
     }
