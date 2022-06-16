@@ -16,6 +16,7 @@ namespace OSVersion.Lib
 
         public void LoadDefault()
         {
+            //  Windowos 10
             this.Add(Windows10.Create1507());
             this.Add(Windows10.Create1607());
             this.Add(Windows10.Create1703());
@@ -28,7 +29,11 @@ namespace OSVersion.Lib
             this.Add(Windows10.Create20H2());
             this.Add(Windows10.Create21H1());
             this.Add(Windows10.Create21H2());
+
+            //  Windows 11
             this.Add(Windows11.Create21H2());
+
+            //  Windows Server
             this.Add(WindowsServer.Create2012());
             this.Add(WindowsServer.Create2012R2());
             this.Add(WindowsServer.Create2016());
@@ -98,5 +103,19 @@ namespace OSVersion.Lib
         }
 
         #endregion
+
+        public List<WindowsOS> GetMatchOS(string keyword)
+        {
+            var list = new List<WindowsOS>();
+            list.AddRange(this.Where(x => x.VersionName == keyword));
+            list.AddRange(this.Where(x => x.VersionAlias.Any(y => y.Equals(keyword, StringComparison.OrdinalIgnoreCase))));
+            list.AddRange(
+                this.Where(x => keyword.StartsWith(x.Name, StringComparison.OrdinalIgnoreCase) ||
+                    x.Alias.Any(y => keyword.StartsWith(y, StringComparison.OrdinalIgnoreCase))).
+                    Where(x => keyword.EndsWith(x.VersionName, StringComparison.OrdinalIgnoreCase) ||
+                    x.VersionAlias.Any(y => keyword.EndsWith(y, StringComparison.OrdinalIgnoreCase))));
+
+            return list;
+        }
     }
 }

@@ -156,5 +156,31 @@ namespace OSVersion.Lib
 
             return winOS;
         }
+
+        public static WindowsOS GetCurrent(WindowsOSCollection collection)
+        {
+            var mo = new ManagementClass("Win32_OperatingSystem").
+                GetInstances().
+                OfType<ManagementObject>().
+                First();
+            string caption = mo["Caption"]?.ToString();
+            string editionText = caption.Split(" ").Last();
+
+            bool isServer = IsOS(OS_AnyServer);
+            string osName = caption switch
+            {
+                string s when s.StartsWith("Microsoft Windows 10") => "Windows 10",
+                string s when s.StartsWith("Microsoft Windows 11") => "Windows 11",
+                string s when s.StartsWith("Microsoft Windows Server") => "Windows Server",
+                _ => null,
+            };
+            var winOS = collection.
+                Where(x => (x.ServerOS ?? false) == isServer).
+                Where(x => x.Name == osName).
+                FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
+            winOS.Edition = Enum.TryParse(editionText, out WindowsEdition tempEdition) ? tempEdition : WindowsEdition.None;
+
+            return winOS;
+        }
     }
 }
