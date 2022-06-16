@@ -1,5 +1,5 @@
 ﻿
-namespace OSVersion.Lib
+namespace OSVersion.Lib.OSVersion
 {
     internal enum WindowsEdition
     {

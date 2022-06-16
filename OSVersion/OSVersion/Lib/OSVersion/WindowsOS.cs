@@ -7,7 +7,7 @@ using System.Management;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
-namespace OSVersion.Lib
+namespace OSVersion.Lib.OSVersion
 {
     [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     internal class WindowsOS : OSCompare
@@ -135,7 +135,6 @@ namespace OSVersion.Lib
                 OfType<ManagementObject>().
                 First();
             string caption = mo["Caption"]?.ToString();
-            //string editionText = Regex.Replace(caption, @"Microsoft\sWindows\s\d+\s", "");
             string editionText = caption.Split(" ").Last();
 
             collection ??= WindowsOSCollection.Load(dbDir);

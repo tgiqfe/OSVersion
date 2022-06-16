@@ -1,5 +1,5 @@
 ﻿using OSVersion;
-using OSVersion.Lib;
+using OSVersion.Lib.OSVersion;
 
 var current = OSInfo.GetCurrent("Sample") as WindowsOS;
 

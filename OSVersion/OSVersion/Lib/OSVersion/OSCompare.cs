@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSVersion.Lib
+namespace OSVersion.Lib.OSVersion
 {
     internal class OSCompare : OSInfo
     {

@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
 
-namespace OSVersion.Lib
+namespace OSVersion.Lib.OSVersion
 {
     [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     internal class WindowsOSCollection : List<WindowsOS>
