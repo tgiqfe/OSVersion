@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using OSVersion.Lib.OSVersion.Windows;
 
 namespace OSVersion.Lib.OSVersion
 {

@@ -1,5 +1,4 @@
-﻿
-namespace OSVersion.Lib.OSVersion
+﻿namespace OSVersion.Lib.OSVersion.Windows
 {
     #region Windows 10
 

@@ -7,7 +7,7 @@ using System.Management;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
-namespace OSVersion.Lib.OSVersion
+namespace OSVersion.Lib.OSVersion.Windows
 {
     [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     internal class WindowsOS : OSCompare
@@ -37,7 +37,7 @@ namespace OSVersion.Lib.OSVersion
         private int GetSerial()
         {
             //  OS名からプライオリティ値を取得
-            int priorityOS = this.Name switch
+            int priorityOS = Name switch
             {
                 "Windows 10" => 10 * 100000,
                 "Windows 11" => 11 * 100000,
@@ -49,9 +49,9 @@ namespace OSVersion.Lib.OSVersion
 
             //  バージョン名(バージョンのビルド番号)からプライオリティ値を取得
             string tempVerText = "";
-            if (this.VersionName.Contains("."))
+            if (VersionName.Contains("."))
             {
-                var array = this.VersionName.Split('.');
+                var array = VersionName.Split('.');
 
                 //  第3フィールド(ビルド番号)の数値をプライオリティ値にセット
                 //  第2フィールドまでしか無い場合は、末尾フィールドをプライオリティ値にセット
@@ -59,7 +59,7 @@ namespace OSVersion.Lib.OSVersion
             }
             else
             {
-                tempVerText = this.VersionName;
+                tempVerText = VersionName;
             }
             int priorityVer = int.TryParse(tempVerText, out int tempNum) ? tempNum : 0;
 
@@ -71,7 +71,7 @@ namespace OSVersion.Lib.OSVersion
 
         public WindowsOS()
         {
-            this.OSFamily = OSFamily.Windows;
+            OSFamily = OSFamily.Windows;
         }
 
         #region Check ServerOS

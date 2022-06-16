@@ -7,38 +7,38 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
 
-namespace OSVersion.Lib.OSVersion
+namespace OSVersion.Lib.OSVersion.Windows
 {
     [System.Runtime.Versioning.SupportedOSPlatform("windows")]
-    internal class WindowsOSCollection : List<WindowsOS>
+    internal class WindowsOSCollection : OSCollection<WindowsOS>
     {
         const string dbFileName = "windowsOSCollection.json";
 
         public void LoadDefault()
         {
             //  Windowos 10
-            this.Add(Windows10.Create1507());
-            this.Add(Windows10.Create1607());
-            this.Add(Windows10.Create1703());
-            this.Add(Windows10.Create1709());
-            this.Add(Windows10.Create1803());
-            this.Add(Windows10.Create1809());
-            this.Add(Windows10.Create1903());
-            this.Add(Windows10.Create1909());
-            this.Add(Windows10.Create2004());
-            this.Add(Windows10.Create20H2());
-            this.Add(Windows10.Create21H1());
-            this.Add(Windows10.Create21H2());
+            Add(Windows10.Create1507());
+            Add(Windows10.Create1607());
+            Add(Windows10.Create1703());
+            Add(Windows10.Create1709());
+            Add(Windows10.Create1803());
+            Add(Windows10.Create1809());
+            Add(Windows10.Create1903());
+            Add(Windows10.Create1909());
+            Add(Windows10.Create2004());
+            Add(Windows10.Create20H2());
+            Add(Windows10.Create21H1());
+            Add(Windows10.Create21H2());
 
             //  Windows 11
-            this.Add(Windows11.Create21H2());
+            Add(Windows11.Create21H2());
 
             //  Windows Server
-            this.Add(WindowsServer.Create2012());
-            this.Add(WindowsServer.Create2012R2());
-            this.Add(WindowsServer.Create2016());
-            this.Add(WindowsServer.Create2019());
-            this.Add(WindowsServer.Create2022());
+            Add(WindowsServer.Create2012());
+            Add(WindowsServer.Create2012R2());
+            Add(WindowsServer.Create2016());
+            Add(WindowsServer.Create2019());
+            Add(WindowsServer.Create2022());
         }
 
         #region Load/Save
@@ -61,9 +61,9 @@ namespace OSVersion.Lib.OSVersion
                     {
                         //Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                         IgnoreReadOnlyProperties = true,
-                        DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                         WriteIndented = true,
-                        Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter(System.Text.Json.JsonNamingPolicy.CamelCase) },
+                        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) },
                     });
                 }
             }
@@ -94,9 +94,9 @@ namespace OSVersion.Lib.OSVersion
                 {
                     //Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                     IgnoreReadOnlyProperties = true,
-                    DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                     WriteIndented = true,
-                    Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter(System.Text.Json.JsonNamingPolicy.CamelCase) },
+                    Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) },
                 });
                 sw.WriteLine(json);
             }

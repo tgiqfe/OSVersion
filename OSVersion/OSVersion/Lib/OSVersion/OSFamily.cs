@@ -7,5 +7,6 @@ namespace OSVersion.Lib.OSVersion
         Windows = 1,
         Mac = 2,
         Linux = 3,
+        Any = 99,
     }
 }
