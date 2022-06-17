@@ -1,7 +1,6 @@
-﻿
-namespace OSVersion.Lib
+﻿namespace OSVersion.Lib.OSVersion
 {
-    internal enum WindowsEdition
+    internal enum Edition
     {
         None = 0,
         Home = 1,

@@ -1,5 +1,6 @@
 ﻿using OSVersion;
-using OSVersion.Lib;
+using OSVersion.Lib.OSVersion;
+using OSVersion.Lib.OSVersion.Windows;
 
 var current = OSInfo.GetCurrent("Sample") as WindowsOS;
 
@@ -8,5 +9,9 @@ var v21H2 = Windows10.Create21H2();
 
 Console.WriteLine($"Current > v1903 = {current > v1903}");
 Console.WriteLine($"Current == v21H2 = {current == v21H2}");
+
+string text = "v1903~v21H2";
+
+
 
 Console.ReadLine();

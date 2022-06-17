@@ -7,16 +7,10 @@ using System.Management;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
-namespace OSVersion.Lib
+namespace OSVersion.Lib.OSVersion.Windows
 {
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
-    internal class WindowsOS : OSCompare
+    internal class WindowsOS : OSInfo
     {
-        #region Public parameter
-
-        public WindowsEdition Edition { get; set; }
-
-        #endregion
         #region Serial calcurate
 
         private int _serial = -1;
@@ -37,7 +31,7 @@ namespace OSVersion.Lib
         private int GetSerial()
         {
             //  OS名からプライオリティ値を取得
-            int priorityOS = this.Name switch
+            int priorityOS = Name switch
             {
                 "Windows 10" => 10 * 100000,
                 "Windows 11" => 11 * 100000,
@@ -49,9 +43,9 @@ namespace OSVersion.Lib
 
             //  バージョン名(バージョンのビルド番号)からプライオリティ値を取得
             string tempVerText = "";
-            if (this.VersionName.Contains("."))
+            if (VersionName.Contains("."))
             {
-                var array = this.VersionName.Split('.');
+                var array = VersionName.Split('.');
 
                 //  第3フィールド(ビルド番号)の数値をプライオリティ値にセット
                 //  第2フィールドまでしか無い場合は、末尾フィールドをプライオリティ値にセット
@@ -59,7 +53,7 @@ namespace OSVersion.Lib
             }
             else
             {
-                tempVerText = this.VersionName;
+                tempVerText = VersionName;
             }
             int priorityVer = int.TryParse(tempVerText, out int tempNum) ? tempNum : 0;
 
@@ -71,7 +65,7 @@ namespace OSVersion.Lib
 
         public WindowsOS()
         {
-            this.OSFamily = OSFamily.Windows;
+            OSFamily = OSFamily.Windows;
         }
 
         #region Check ServerOS
@@ -128,6 +122,7 @@ namespace OSVersion.Lib
 
         #endregion
 
+        /*
         public static WindowsOS GetCurrent(WindowsOSCollection collection, string dbDir)
         {
             var mo = new ManagementClass("Win32_OperatingSystem").
@@ -135,7 +130,6 @@ namespace OSVersion.Lib
                 OfType<ManagementObject>().
                 First();
             string caption = mo["Caption"]?.ToString();
-            //string editionText = Regex.Replace(caption, @"Microsoft\sWindows\s\d+\s", "");
             string editionText = caption.Split(" ").Last();
 
             collection ??= WindowsOSCollection.Load(dbDir);
@@ -152,7 +146,7 @@ namespace OSVersion.Lib
                 Where(x => (x.ServerOS ?? false) == isServer).
                 Where(x => x.Name == osName).
                 FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
-            winOS.Edition = Enum.TryParse(editionText, out WindowsEdition tempEdition) ? tempEdition : WindowsEdition.None;
+            winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
             return winOS;
         }
@@ -178,9 +172,10 @@ namespace OSVersion.Lib
                 Where(x => (x.ServerOS ?? false) == isServer).
                 Where(x => x.Name == osName).
                 FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
-            winOS.Edition = Enum.TryParse(editionText, out WindowsEdition tempEdition) ? tempEdition : WindowsEdition.None;
+            winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
             return winOS;
         }
+        */
     }
 }

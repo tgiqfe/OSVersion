@@ -1,12 +1,11 @@
-﻿
-namespace OSVersion.Lib
+﻿namespace OSVersion.Lib.OSVersion.Windows
 {
     #region Windows 10
 
     /// <summary>
     /// Windows 10生成用クラス
     /// </summary>
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
+    
     internal class Windows10
     {
         public static WindowsOS Create1507()
@@ -159,7 +158,6 @@ namespace OSVersion.Lib
     /// <summary>
     /// Windows 11生成用クラス
     /// </summary>
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     internal class Windows11
     {
         public static WindowsOS Create21H2()

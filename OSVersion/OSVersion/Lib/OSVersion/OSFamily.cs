@@ -1,5 +1,5 @@
 ﻿
-namespace OSVersion.Lib
+namespace OSVersion.Lib.OSVersion
 {
     internal enum OSFamily
     {
@@ -7,5 +7,6 @@ namespace OSVersion.Lib
         Windows = 1,
         Mac = 2,
         Linux = 3,
+        Any = 99,
     }
 }

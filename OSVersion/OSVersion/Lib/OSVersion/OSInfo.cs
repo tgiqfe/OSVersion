@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using OSVersion.Lib.OSVersion.Windows;
 
-namespace OSVersion.Lib
+namespace OSVersion.Lib.OSVersion
 {
-    internal class OSInfo
+    internal class OSInfo : OSCompare
     {
         #region Public parameter
 
@@ -20,7 +21,7 @@ namespace OSVersion.Lib
         /// <summary>
         /// OSの名前
         /// </summary>
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
         /// <summary>
         /// OS名のエイリアス
@@ -38,6 +39,11 @@ namespace OSVersion.Lib
         public string[] VersionAlias { get; set; }
 
         /// <summary>
+        /// OSのエディション
+        /// </summary>
+        public Edition? Edition { get; set; }
+
+        /// <summary>
         /// サーバOSかどうか
         /// </summary>
         public bool? ServerOS { get; set; }
@@ -50,18 +56,30 @@ namespace OSVersion.Lib
         /// <summary>
         /// 単純なバージョン比較用
         /// </summary>
-        protected virtual int Serial { get; }
+        protected override int Serial { get; }
 
         #endregion
 
-        private static WindowsOSCollection windowsCollection = null;
+        public bool IsMatch(string keyword)
+        {
+            if (this.VersionName == keyword) return true;
+            if (this.VersionAlias.Any(x => x.Equals(keyword, StringComparison.OrdinalIgnoreCase))) return true;
+            if ((keyword.StartsWith(this.Name) || this.Alias.Any(x => keyword.StartsWith(x))) &&
+                keyword.EndsWith(this.VersionName) || this.VersionAlias.Any(x => keyword.EndsWith(x))) return true;
+
+            return false;
+        }
+
+
+
+        //private static WindowsOSCollection windowsCollection = null;
 
         public static OSInfo GetCurrent(string dbDir)
         {
             if (OperatingSystem.IsWindows())
             {
                 //  Windowsの場合
-                return WindowsOS.GetCurrent(windowsCollection, dbDir);
+                //return WindowsOS.GetCurrent(windowsCollection, dbDir);
             }
             else if (OperatingSystem.IsMacOS())
             {
@@ -75,7 +93,7 @@ namespace OSVersion.Lib
             return null;
         }
 
-        
+
 
     }
 }
