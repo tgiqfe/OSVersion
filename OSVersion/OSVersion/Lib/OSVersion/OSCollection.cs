@@ -48,6 +48,20 @@ namespace OSVersion.Lib.OSVersion
             Collection.Add(AnyOS.CreateMaximum());
         }
 
+        public List<OSInfo> GetMatchOS(string keyword)
+        {
+            var list = new List<OSInfo>();
+            list.AddRange(Collection.Where(x => x.VersionName == keyword));
+            list.AddRange(Collection.Where(x => x.VersionAlias.Any(y => y.Equals(keyword, StringComparison.OrdinalIgnoreCase))));
+            list.AddRange(
+                Collection.Where(x => keyword.StartsWith(x.Name, StringComparison.OrdinalIgnoreCase) ||
+                    x.Alias.Any(y => keyword.StartsWith(y, StringComparison.OrdinalIgnoreCase))).
+                    Where(x => keyword.EndsWith(x.VersionName, StringComparison.OrdinalIgnoreCase) ||
+                    x.VersionAlias.Any(y => keyword.EndsWith(y, StringComparison.OrdinalIgnoreCase))));
+
+            return list;
+        }
+
         #region Load/Save
 
         /// <summary>
@@ -101,6 +115,5 @@ namespace OSVersion.Lib.OSVersion
         }
 
         #endregion
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OSVersion.Lib.OSVersion.Any
 {
-    internal class AnyOS : OSCompare
+    internal class AnyOS : OSInfo
     {
         #region Serial calcurate
 

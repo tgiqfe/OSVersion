@@ -9,7 +9,7 @@ using System.IO;
 
 namespace OSVersion.Lib.OSVersion.Windows
 {
-    
+    /*
     internal class WindowsOSCollection : List<WindowsOS>
     {
         const string dbFileName = "windowsOSCollection.json";
@@ -119,4 +119,5 @@ namespace OSVersion.Lib.OSVersion.Windows
             return list;
         }
     }
+    */
 }

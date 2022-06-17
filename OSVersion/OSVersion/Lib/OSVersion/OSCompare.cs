@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OSVersion.Lib.OSVersion
 {
-    internal class OSCompare : OSInfo
+    internal class OSCompare
     {
         #region <
 
@@ -193,6 +193,17 @@ namespace OSVersion.Lib.OSVersion
         public static bool operator !=(int x, OSCompare y) { return y is not null ? x != y.Serial : true; }
 
         #endregion
+
+
+        /// <summary>
+        /// OSの名前
+        /// </summary>
+        public virtual string Name { get; set; }
+
+        /// <summary>
+        /// 単純なバージョン比較用
+        /// </summary>
+        protected virtual int Serial { get; }
 
         public override bool Equals(object obj)
         {

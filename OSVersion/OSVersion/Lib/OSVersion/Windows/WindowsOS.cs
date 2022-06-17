@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace OSVersion.Lib.OSVersion.Windows
 {
-    internal class WindowsOS : OSCompare
+    internal class WindowsOS : OSInfo
     {
         #region Serial calcurate
 

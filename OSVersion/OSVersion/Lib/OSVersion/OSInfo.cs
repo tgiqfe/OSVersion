@@ -8,7 +8,7 @@ using OSVersion.Lib.OSVersion.Windows;
 
 namespace OSVersion.Lib.OSVersion
 {
-    internal class OSInfo
+    internal class OSInfo : OSCompare
     {
         #region Public parameter
 
@@ -21,7 +21,7 @@ namespace OSVersion.Lib.OSVersion
         /// <summary>
         /// OSの名前
         /// </summary>
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
         /// <summary>
         /// OS名のエイリアス
@@ -56,11 +56,11 @@ namespace OSVersion.Lib.OSVersion
         /// <summary>
         /// 単純なバージョン比較用
         /// </summary>
-        protected virtual int Serial { get; }
+        protected override int Serial { get; }
 
         #endregion
 
-        private static WindowsOSCollection windowsCollection = null;
+        //private static WindowsOSCollection windowsCollection = null;
 
         public static OSInfo GetCurrent(string dbDir)
         {
