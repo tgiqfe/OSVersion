@@ -10,4 +10,8 @@ var v21H2 = Windows10.Create21H2();
 Console.WriteLine($"Current > v1903 = {current > v1903}");
 Console.WriteLine($"Current == v21H2 = {current == v21H2}");
 
+string text = "v1903~v21H2";
+
+
+
 Console.ReadLine();

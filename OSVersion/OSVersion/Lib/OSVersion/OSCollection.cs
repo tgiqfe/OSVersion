@@ -11,50 +11,46 @@ using OSVersion.Lib.OSVersion.Any;
 
 namespace OSVersion.Lib.OSVersion
 {
-    internal class OSCollection
+    internal class OSCollection : List<OSInfo>
     {
-        public List<OSInfo> Collection { get; set; }
-
         public void LoadDefault()
         {
-            this.Collection = new();
-
             //  Windowos 10
-            Collection.Add(Windows10.Create1507());
-            Collection.Add(Windows10.Create1607());
-            Collection.Add(Windows10.Create1703());
-            Collection.Add(Windows10.Create1709());
-            Collection.Add(Windows10.Create1803());
-            Collection.Add(Windows10.Create1809());
-            Collection.Add(Windows10.Create1903());
-            Collection.Add(Windows10.Create1909());
-            Collection.Add(Windows10.Create2004());
-            Collection.Add(Windows10.Create20H2());
-            Collection.Add(Windows10.Create21H1());
-            Collection.Add(Windows10.Create21H2());
+            Add(Windows10.Create1507());
+            Add(Windows10.Create1607());
+            Add(Windows10.Create1703());
+            Add(Windows10.Create1709());
+            Add(Windows10.Create1803());
+            Add(Windows10.Create1809());
+            Add(Windows10.Create1903());
+            Add(Windows10.Create1909());
+            Add(Windows10.Create2004());
+            Add(Windows10.Create20H2());
+            Add(Windows10.Create21H1());
+            Add(Windows10.Create21H2());
 
             //  Windows 11
-            Collection.Add(Windows11.Create21H2());
+            Add(Windows11.Create21H2());
 
             //  Windows Server
-            Collection.Add(WindowsServer.Create2012());
-            Collection.Add(WindowsServer.Create2012R2());
-            Collection.Add(WindowsServer.Create2016());
-            Collection.Add(WindowsServer.Create2019());
-            Collection.Add(WindowsServer.Create2022());
+            Add(WindowsServer.Create2012());
+            Add(WindowsServer.Create2012R2());
+            Add(WindowsServer.Create2016());
+            Add(WindowsServer.Create2019());
+            Add(WindowsServer.Create2022());
 
             //  AnyOS
-            Collection.Add(AnyOS.CreateMinimum());
-            Collection.Add(AnyOS.CreateMaximum());
+            Add(AnyOS.CreateMinimum());
+            Add(AnyOS.CreateMaximum());
         }
 
         public List<OSInfo> GetMatchOS(string keyword)
         {
             var list = new List<OSInfo>();
-            list.AddRange(Collection.Where(x => x.VersionName == keyword));
-            list.AddRange(Collection.Where(x => x.VersionAlias.Any(y => y.Equals(keyword, StringComparison.OrdinalIgnoreCase))));
+            list.AddRange(this.Where(x => x.VersionName == keyword));
+            list.AddRange(this.Where(x => x.VersionAlias.Any(y => y.Equals(keyword, StringComparison.OrdinalIgnoreCase))));
             list.AddRange(
-                Collection.Where(x => keyword.StartsWith(x.Name, StringComparison.OrdinalIgnoreCase) ||
+                this.Where(x => keyword.StartsWith(x.Name, StringComparison.OrdinalIgnoreCase) ||
                     x.Alias.Any(y => keyword.StartsWith(y, StringComparison.OrdinalIgnoreCase))).
                     Where(x => keyword.EndsWith(x.VersionName, StringComparison.OrdinalIgnoreCase) ||
                     x.VersionAlias.Any(y => keyword.EndsWith(y, StringComparison.OrdinalIgnoreCase))));

@@ -60,6 +60,18 @@ namespace OSVersion.Lib.OSVersion
 
         #endregion
 
+        public bool IsMatch(string keyword)
+        {
+            if (this.VersionName == keyword) return true;
+            if (this.VersionAlias.Any(x => x.Equals(keyword, StringComparison.OrdinalIgnoreCase))) return true;
+            if ((keyword.StartsWith(this.Name) || this.Alias.Any(x => keyword.StartsWith(x))) &&
+                keyword.EndsWith(this.VersionName) || this.VersionAlias.Any(x => keyword.EndsWith(x))) return true;
+
+            return false;
+        }
+
+
+
         //private static WindowsOSCollection windowsCollection = null;
 
         public static OSInfo GetCurrent(string dbDir)
@@ -81,7 +93,7 @@ namespace OSVersion.Lib.OSVersion
             return null;
         }
 
-        
+
 
     }
 }
