@@ -9,14 +9,8 @@ using System.Text.RegularExpressions;
 
 namespace OSVersion.Lib.OSVersion.Windows
 {
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     internal class WindowsOS : OSCompare
     {
-        #region Public parameter
-
-        public WindowsEdition Edition { get; set; }
-
-        #endregion
         #region Serial calcurate
 
         private int _serial = -1;
@@ -128,6 +122,7 @@ namespace OSVersion.Lib.OSVersion.Windows
 
         #endregion
 
+        /*
         public static WindowsOS GetCurrent(WindowsOSCollection collection, string dbDir)
         {
             var mo = new ManagementClass("Win32_OperatingSystem").
@@ -151,7 +146,7 @@ namespace OSVersion.Lib.OSVersion.Windows
                 Where(x => (x.ServerOS ?? false) == isServer).
                 Where(x => x.Name == osName).
                 FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
-            winOS.Edition = Enum.TryParse(editionText, out WindowsEdition tempEdition) ? tempEdition : WindowsEdition.None;
+            winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
             return winOS;
         }
@@ -177,9 +172,10 @@ namespace OSVersion.Lib.OSVersion.Windows
                 Where(x => (x.ServerOS ?? false) == isServer).
                 Where(x => x.Name == osName).
                 FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
-            winOS.Edition = Enum.TryParse(editionText, out WindowsEdition tempEdition) ? tempEdition : WindowsEdition.None;
+            winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
             return winOS;
         }
+        */
     }
 }

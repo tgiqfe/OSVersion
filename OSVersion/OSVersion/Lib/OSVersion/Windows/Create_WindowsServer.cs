@@ -5,7 +5,6 @@
     /// <summary>
     /// Windows Server生成用クラス
     /// </summary>
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     internal class WindowsServer
     {
         public static WindowsOS Create2012()

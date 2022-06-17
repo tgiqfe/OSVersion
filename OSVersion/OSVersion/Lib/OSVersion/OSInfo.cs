@@ -39,6 +39,11 @@ namespace OSVersion.Lib.OSVersion
         public string[] VersionAlias { get; set; }
 
         /// <summary>
+        /// OSのエディション
+        /// </summary>
+        public Edition? Edition { get; set; }
+
+        /// <summary>
         /// サーバOSかどうか
         /// </summary>
         public bool? ServerOS { get; set; }
@@ -62,7 +67,7 @@ namespace OSVersion.Lib.OSVersion
             if (OperatingSystem.IsWindows())
             {
                 //  Windowsの場合
-                return WindowsOS.GetCurrent(windowsCollection, dbDir);
+                //return WindowsOS.GetCurrent(windowsCollection, dbDir);
             }
             else if (OperatingSystem.IsMacOS())
             {

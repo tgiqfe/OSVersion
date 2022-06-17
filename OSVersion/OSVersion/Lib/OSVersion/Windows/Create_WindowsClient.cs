@@ -5,7 +5,7 @@
     /// <summary>
     /// Windows 10生成用クラス
     /// </summary>
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
+    
     internal class Windows10
     {
         public static WindowsOS Create1507()
@@ -158,7 +158,6 @@
     /// <summary>
     /// Windows 11生成用クラス
     /// </summary>
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     internal class Windows11
     {
         public static WindowsOS Create21H2()

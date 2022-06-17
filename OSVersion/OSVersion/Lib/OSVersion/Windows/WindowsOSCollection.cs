@@ -9,12 +9,12 @@ using System.IO;
 
 namespace OSVersion.Lib.OSVersion.Windows
 {
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
-    internal class WindowsOSCollection : OSCollection<WindowsOS>
+    
+    internal class WindowsOSCollection : List<WindowsOS>
     {
         const string dbFileName = "windowsOSCollection.json";
 
-        public void LoadDefault()
+        public  void LoadDefault()
         {
             //  Windowos 10
             Add(Windows10.Create1507());
@@ -103,6 +103,7 @@ namespace OSVersion.Lib.OSVersion.Windows
         }
 
         #endregion
+
 
         public List<WindowsOS> GetMatchOS(string keyword)
         {
