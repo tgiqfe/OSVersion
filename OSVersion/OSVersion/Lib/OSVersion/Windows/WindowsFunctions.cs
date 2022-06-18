@@ -92,7 +92,7 @@ namespace OSVersion.Lib.OSVersion.Windows
         }
 
 
-        public class WindowsOSRange
+        private class WindowsOSRange
         {
             public OSInfo[] Minimum { get; set; }
             public OSInfo[] Maximum { get; set; }
@@ -126,43 +126,7 @@ namespace OSVersion.Lib.OSVersion.Windows
             {
                 list.Add(new WindowsOSRange(collection, field));
             }
-
-        }
-
-
-        public static bool WithinOS2(OSCollection collection, WindowsOS current, string targetOSText)
-        {
-            string[] fields = targetOSText.Split(",");
-            foreach (string field in fields)
-            {
-                string minVer = "";
-                string maxVer = "";
-                if (field.Contains("~"))
-                {
-                    minVer = field.Substring(0, field.IndexOf("~"));
-                    maxVer = field.Substring(field.IndexOf("~") + 1);
-                }
-                else
-                {
-                    minVer = field;
-                    maxVer = field;
-                }
-                OSInfo[] minVers = string.IsNullOrEmpty(minVer) ?
-                    new OSInfo[] { AnyOS.CreateMinimum() } :
-                    collection.Where(x => x.IsMatch(minVer)).ToArray();
-                OSInfo[] maxVers = string.IsNullOrEmpty(maxVer) ?
-                    new OSInfo[] { AnyOS.CreateMaximum() } :
-                    collection.Where(x => x.IsMatch(maxVer)).ToArray();
-
-                bool minRet = minVers.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
-                    Any(x => x <= current);
-                bool maxRet = maxVers.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
-                    Any(x => x >= current);
-
-                if (minRet && maxRet) return true;
-            }
-
-            return false;
+            return list.Any(x => x.Within(current));
         }
     }
 }
