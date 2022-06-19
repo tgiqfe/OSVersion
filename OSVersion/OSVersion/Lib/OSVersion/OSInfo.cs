@@ -63,9 +63,9 @@ namespace OSVersion.Lib.OSVersion
         public bool IsMatch(string keyword)
         {
             if (this.VersionName == keyword) return true;
-            if (this.VersionAlias.Any(x => x.Equals(keyword, StringComparison.OrdinalIgnoreCase))) return true;
-            if ((keyword.StartsWith(this.Name) || this.Alias.Any(x => keyword.StartsWith(x))) &&
-                keyword.EndsWith(this.VersionName) || this.VersionAlias.Any(x => keyword.EndsWith(x))) return true;
+            if (this.VersionAlias?.Any(x => x.Equals(keyword, StringComparison.OrdinalIgnoreCase)) ?? false) return true;
+            if ((keyword.StartsWith(this.Name) || (this.Alias?.Any(x => keyword.StartsWith(x)) ?? false)) &&
+                keyword.EndsWith(this.VersionName) || (this.VersionAlias?.Any(x => keyword.EndsWith(x)) ?? false)) return true;
 
             return false;
         }
