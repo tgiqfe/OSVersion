@@ -10,7 +10,11 @@ var v21H2 = Windows10.Create21H2();
 Console.WriteLine($"Current > v1903 = {current > v1903}");
 Console.WriteLine($"Current == v21H2 = {current == v21H2}");
 
-string text = "v1903~v21H2";
+
+var collection = OSCollection.Load("sample\\test.json");
+bool ret = WindowsFunctions.WithinOS(collection, current, "v1507~v21H2");
+
+Console.WriteLine($"v1507~v21H2 => {ret}");
 
 
 

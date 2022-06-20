@@ -47,7 +47,9 @@ namespace OSVersion.Lib.OSVersion.Any
             return new AnyOS()
             {
                 Name = "MinimumOS",
+                Alias = new string[0] { },
                 VersionName = int.MinValue.ToString(),
+                VersionAlias = new string[0] { },
             };
         }
 
@@ -60,7 +62,9 @@ namespace OSVersion.Lib.OSVersion.Any
             return new AnyOS()
             {
                 Name = "MaximumOS",
+                Alias = new string[0] { },
                 VersionName = int.MaxValue.ToString(),
+                VersionAlias = new string[0] { },
             };
         }
     }
