@@ -5,7 +5,7 @@ using OSVersion.Lib.OSVersion.Windows;
 
 var collection = OSCollection.Load("sample\\test.json");
 
-var current = OSInfo.GetCurrent(collection) as WindowsOS;
+var current = WindowsFunctions.GetCurrent(collection);
 
 
 var v1903 = Windows10.Create1903();

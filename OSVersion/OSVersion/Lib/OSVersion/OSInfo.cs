@@ -8,8 +8,6 @@ using OSVersion.Lib.OSVersion.Windows;
 
 namespace OSVersion.Lib.OSVersion
 {
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
-    //[System.Runtime.Versioning.SupportedOSPlatform("linux")]
     internal class OSInfo : OSCompare
     {
         #region Public parameter
@@ -71,28 +69,5 @@ namespace OSVersion.Lib.OSVersion
 
             return false;
         }
-
-        public static OSInfo GetCurrent(OSCollection collection)
-        {
-            if (OperatingSystem.IsWindows())
-            {
-                //  Windowsの場合
-                var curre = WindowsFunctions.GetCurrent(collection);
-                return WindowsFunctions.GetCurrent(collection);
-            }
-            else if (OperatingSystem.IsMacOS())
-            {
-                //  Macの場合 (そのうち実装する、、、かも?)
-            }
-            else if (OperatingSystem.IsLinux())
-            {
-                //  Linuxの場合 (そのうち実装する、、、かも?)
-            }
-
-            return null;
-        }
-
-
-
     }
 }
