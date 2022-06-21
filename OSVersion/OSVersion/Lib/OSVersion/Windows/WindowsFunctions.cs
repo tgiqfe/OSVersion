@@ -88,6 +88,12 @@ namespace OSVersion.Lib.OSVersion.Windows
                 FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
             winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
+            if (winOS.GetType().IsSubclassOf(typeof(OSInfo)))
+            {
+                Console.WriteLine("sabu");
+            }
+
+
             return winOS as WindowsOS;
         }
 

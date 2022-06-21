@@ -5,9 +5,8 @@ using OSVersion.Lib.OSVersion.Windows;
 
 var collection = OSCollection.Load("sample\\test.json");
 
-#pragma warning disable CA1416
-var current = WindowsFunctions.GetCurrent(collection);
-#pragma warning restore CA1416
+var current = OSInfo.GetCurrent(collection) as WindowsOS;
+
 
 var v1903 = Windows10.Create1903();
 var v21H2 = Windows10.Create21H2();
