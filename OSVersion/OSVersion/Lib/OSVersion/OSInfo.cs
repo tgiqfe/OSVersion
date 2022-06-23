@@ -69,31 +69,5 @@ namespace OSVersion.Lib.OSVersion
 
             return false;
         }
-
-
-
-        //private static WindowsOSCollection windowsCollection = null;
-
-        public static OSInfo GetCurrent(string dbDir)
-        {
-            if (OperatingSystem.IsWindows())
-            {
-                //  Windowsの場合
-                //return WindowsOS.GetCurrent(windowsCollection, dbDir);
-            }
-            else if (OperatingSystem.IsMacOS())
-            {
-                //  Macの場合 (そのうち実装する、、、かも?)
-            }
-            else if (OperatingSystem.IsLinux())
-            {
-                //  Linuxの場合 (そのうち実装する、、、かも?)
-            }
-
-            return null;
-        }
-
-
-
     }
 }
