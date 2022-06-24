@@ -23,7 +23,7 @@ namespace OSVersion.Lib.OSVersion.Windows
                 new OSInfo[] { AnyOS.CreateMaximum() } :
                 collection.Where(x => x.IsMatch(osWord[1])).ToArray();
         }
-        public bool Within(WindowsOS current)
+        public bool Within(OSInfo current)
         {
             bool minRet = Minimum.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
                 Any(x => x <= current);

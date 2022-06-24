@@ -65,7 +65,14 @@ namespace OSVersion.Lib.OSVersion.Windows
 
         #endregion
 
-        public static WindowsOS GetCurrent(OSCollection collection)
+        public static OSInfo GetCurrent()
+        {
+            var collection = new OSCollection();
+            collection.LoadDefault();
+            return GetCurrent(collection);
+        }
+
+        public static OSInfo GetCurrent(OSCollection collection)
         {
             var mo = new ManagementClass("Win32_OperatingSystem").
                 GetInstances().
@@ -87,10 +94,13 @@ namespace OSVersion.Lib.OSVersion.Windows
                 FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
             winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
-            return winOS as WindowsOS;
+            var ret = winOS.GetType().IsSubclassOf(typeof(OSInfo));
+            Console.WriteLine(ret);
+
+            return winOS;
         }
 
-        public static bool WithinOS(OSCollection collection, WindowsOS current, string text)
+        public static bool WithinOS(OSCollection collection, OSInfo current, string text)
         {
             var list = new List<WindowsOSRange>();
             foreach (string field in text.Split(","))
