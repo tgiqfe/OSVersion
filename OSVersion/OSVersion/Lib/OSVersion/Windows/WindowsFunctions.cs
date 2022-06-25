@@ -65,7 +65,21 @@ namespace OSVersion.Lib.OSVersion.Windows
 
         #endregion
 
-        public static WindowsOS GetCurrent(OSCollection collection)
+        private static OSCollection _collection = null;
+
+        #region GetCurrent
+
+        /// <summary>
+        /// 事前ロード済みOSCollectionインスタンスを使用しない場合のGetCurrent
+        /// </summary>
+        /// <returns></returns>
+        public static OSInfo GetCurrent()
+        {
+            _collection ??= OSCollection.Create();
+            return GetCurrent(_collection);
+        }
+
+        public static OSInfo GetCurrent(OSCollection collection)
         {
             var mo = new ManagementClass("Win32_OperatingSystem").
                 GetInstances().
@@ -87,10 +101,28 @@ namespace OSVersion.Lib.OSVersion.Windows
                 FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
             winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
-            return winOS as WindowsOS;
+            var ret = winOS.GetType().IsSubclassOf(typeof(OSInfo));
+            Console.WriteLine(ret);
+
+            return winOS;
         }
 
-        public static bool WithinOS(OSCollection collection, WindowsOS current, string text)
+        #endregion
+        #region Within
+
+        /// <summary>
+        /// 事前ロード済みOSCollectionインスタンスを使用しない場合のWithin
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static bool WithinOS(OSInfo current, string text)
+        {
+            _collection ??= OSCollection.Create();
+            return WithinOS(current, text);
+        }
+
+        public static bool WithinOS(OSCollection collection, OSInfo current, string text)
         {
             var list = new List<WindowsOSRange>();
             foreach (string field in text.Split(","))
@@ -99,5 +131,7 @@ namespace OSVersion.Lib.OSVersion.Windows
             }
             return list.Any(x => x.Within(current));
         }
+
+        #endregion
     }
 }

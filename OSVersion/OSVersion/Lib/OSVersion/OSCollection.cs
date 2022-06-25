@@ -44,6 +44,14 @@ namespace OSVersion.Lib.OSVersion
             Add(AnyOS.CreateMaximum());
         }
 
+        public static OSCollection Create()
+        {
+            var collection = new OSCollection();
+            collection.LoadDefault();
+            return collection;
+        }
+
+        /*
         public List<OSInfo> GetMatchOS(string keyword)
         {
             var list = new List<OSInfo>();
@@ -57,6 +65,7 @@ namespace OSVersion.Lib.OSVersion
 
             return list;
         }
+        */
 
         #region Load/Save
 
@@ -82,8 +91,9 @@ namespace OSVersion.Lib.OSVersion
             catch { }
             if (collection == null)
             {
-                collection = new OSCollection();
-                collection.LoadDefault();
+                //collection = new OSCollection();
+                //collection.LoadDefault();
+                collection = OSCollection.Create();
                 collection.Save(filePath);
             }
             return collection;
