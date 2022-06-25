@@ -65,11 +65,18 @@ namespace OSVersion.Lib.OSVersion.Windows
 
         #endregion
 
+        private static OSCollection _collection = null;
+
+        #region GetCurrent
+
+        /// <summary>
+        /// 事前ロード済みOSCollectionインスタンスを使用しない場合のGetCurrent
+        /// </summary>
+        /// <returns></returns>
         public static OSInfo GetCurrent()
         {
-            var collection = new OSCollection();
-            collection.LoadDefault();
-            return GetCurrent(collection);
+            _collection ??= OSCollection.Create();
+            return GetCurrent(_collection);
         }
 
         public static OSInfo GetCurrent(OSCollection collection)
@@ -100,6 +107,21 @@ namespace OSVersion.Lib.OSVersion.Windows
             return winOS;
         }
 
+        #endregion
+        #region Within
+
+        /// <summary>
+        /// 事前ロード済みOSCollectionインスタンスを使用しない場合のWithin
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static bool WithinOS(OSInfo current, string text)
+        {
+            _collection ??= OSCollection.Create();
+            return WithinOS(current, text);
+        }
+
         public static bool WithinOS(OSCollection collection, OSInfo current, string text)
         {
             var list = new List<WindowsOSRange>();
@@ -109,5 +131,7 @@ namespace OSVersion.Lib.OSVersion.Windows
             }
             return list.Any(x => x.Within(current));
         }
+
+        #endregion
     }
 }

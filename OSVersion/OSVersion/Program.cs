@@ -3,10 +3,7 @@ using OSVersion.Lib.OSVersion;
 using OSVersion.Lib.OSVersion.Windows;
 
 
-var collection = OSCollection.Load("sample\\test.json");
-
-var current = WindowsFunctions.GetCurrent(collection);
-
+var current = WindowsFunctions.GetCurrent();
 
 var v1903 = Windows10.Create1903();
 var v21H2 = Windows10.Create21H2();
@@ -19,7 +16,7 @@ Console.WriteLine($"Current > winSV2016 = {current > winSV2016}");
 Console.WriteLine($"Current <= winSV2016 = {current <= winSV2016}");
 
 
-bool ret = WindowsFunctions.WithinOS(collection, current, "v1507~v21H2");
+bool ret = WindowsFunctions.WithinOS(current, "v1507~v21H2");
 
 Console.WriteLine($"v1507~v21H2 => {ret}");
 

@@ -11,6 +11,7 @@ namespace OSVersion.Lib.OSVersion.Windows
     {
         public OSInfo[] Minimum { get; set; }
         public OSInfo[] Maximum { get; set; }
+
         public WindowsOSRange(OSCollection collection, string text)
         {
             string[] osWord = text.Contains("~") ?
@@ -23,6 +24,7 @@ namespace OSVersion.Lib.OSVersion.Windows
                 new OSInfo[] { AnyOS.CreateMaximum() } :
                 collection.Where(x => x.IsMatch(osWord[1])).ToArray();
         }
+
         public bool Within(OSInfo current)
         {
             bool minRet = Minimum.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
