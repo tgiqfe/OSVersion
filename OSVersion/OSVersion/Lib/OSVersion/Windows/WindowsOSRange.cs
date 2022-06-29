@@ -7,6 +7,9 @@ using OSVersion.Lib.OSVersion.Any;
 
 namespace OSVersion.Lib.OSVersion.Windows
 {
+    /// <summary>
+    /// OSバージョンの範囲内確認用クラス
+    /// </summary>
     internal class WindowsOSRange
     {
         public OSInfo[] Minimum { get; set; }
