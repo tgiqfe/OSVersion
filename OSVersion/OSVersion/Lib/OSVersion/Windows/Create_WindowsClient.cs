@@ -150,6 +150,17 @@
                 VersionAlias = new[] { "21H2", "v21H2", "19044", "November 2021 Update", "November2021Update" },
             };
         }
+
+        public static WindowsOS Create22H2()
+        {
+            return new WindowsOS()
+            {
+                Name = "Windows 10",
+                Alias = new[] { "Windows10", "Windows_10", "Win10" },
+                VersionName = "10.0.19045",
+                VersionAlias = new[] { "22H2", "v22H2", "19045", "2022 Update", "2022Update" },
+            };
+        }
     }
 
     #endregion
@@ -168,6 +179,17 @@
                 Alias = new[] { "Windows11", "Windows_11", "Win11" },
                 VersionName = "10.0.22000",
                 VersionAlias = new[] { "21H2", "v21H2", "22000", "Sun Valley", "Release Version", "ReleaseVersion" },
+            };
+        }
+
+        public static WindowsOS Create22H2()
+        {
+            return new WindowsOS()
+            {
+                Name = "Windows 11",
+                Alias = new[] { "Windows11", "Windows_11", "Win11" },
+                VersionName = "10.0.22621",
+                VersionAlias = new[] { "22H2", "v22H2", "22621", "2022 Update", "2022Update" },
             };
         }
     }

@@ -100,8 +100,8 @@ namespace OSVersion.Lib.OSVersion.Windows
                 FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
             winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
-            var ret = winOS.GetType().IsSubclassOf(typeof(OSInfo));
-            Console.WriteLine(ret);
+            //var ret = winOS.GetType().IsSubclassOf(typeof(OSInfo));
+            //Console.WriteLine(ret);
 
             return winOS;
         }
@@ -118,7 +118,7 @@ namespace OSVersion.Lib.OSVersion.Windows
         public static bool WithinOS(OSInfo current, string text)
         {
             _collection ??= OSCollection.Create();
-            return WithinOS(current, text);
+            return WithinOS(_collection, current, text);
         }
 
         public static bool WithinOS(OSCollection collection, OSInfo current, string text)
@@ -129,6 +129,15 @@ namespace OSVersion.Lib.OSVersion.Windows
                 list.Add(new WindowsOSRange(collection, field));
             }
             return list.Any(x => x.Within(current));
+        }
+
+        #endregion
+        #region From Keyword
+
+        public static OSInfo FromKeyword(string keyword)
+        {
+            _collection ??= OSCollection.Create();
+            return _collection.FirstOrDefault(x => x.IsMatch(keyword));
         }
 
         #endregion
