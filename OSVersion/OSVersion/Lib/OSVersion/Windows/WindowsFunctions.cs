@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management;
 using System.Runtime.InteropServices;
-using OSVersion.Lib.OSVersion.Any;
 
 namespace OSVersion.Lib.OSVersion.Windows
 {
