@@ -69,5 +69,10 @@ namespace OSVersion.Lib.OSVersion
 
             return false;
         }
+
+        public override string ToString()
+        {
+            return $"{Name} [ver {VersionName}]";
+        }
     }
 }
