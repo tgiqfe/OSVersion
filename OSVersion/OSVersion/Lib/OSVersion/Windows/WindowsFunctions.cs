@@ -124,7 +124,7 @@ namespace OSVersion.Lib.OSVersion.Windows
         public static bool WithinOS(OSCollection collection, OSInfo current, string text)
         {
             var list = new List<WindowsOSRange>();
-            foreach (string field in text.Split(","))
+            foreach (string field in text.Split(",").Select(x => x.Trim()))
             {
                 list.Add(new WindowsOSRange(collection, field));
             }
