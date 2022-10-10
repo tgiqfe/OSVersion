@@ -18,7 +18,9 @@ namespace OSVersion.Lib.OSVersion
         /// <returns></returns>
         public static bool operator <(OSCompare x, OSCompare y)
         {
-            return x is not null && y is not null ? (x.Name == y.Name && x.Serial < y.Serial) : false;
+            return x is not null && y is not null ?
+                ((x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial < y.Serial) :
+                false;
         }
 
         /// <summary>
@@ -48,7 +50,9 @@ namespace OSVersion.Lib.OSVersion
         /// <returns></returns>
         public static bool operator >(OSCompare x, OSCompare y)
         {
-            return x is not null && y is not null ? (x.Name == y.Name && x.Serial > y.Serial) : false;
+            return x is not null && y is not null ?
+                ((x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial > y.Serial) :
+                false;
         }
 
         /// <summary>
@@ -79,7 +83,9 @@ namespace OSVersion.Lib.OSVersion
         /// <returns></returns>
         public static bool operator <=(OSCompare x, OSCompare y)
         {
-            return x is not null && y is not null ? (x.Name == y.Name && x.Serial <= y.Serial) : false;
+            return x is not null && y is not null ?
+                ((x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial <= y.Serial) :
+                false;
         }
 
         /// <summary>
@@ -109,7 +115,9 @@ namespace OSVersion.Lib.OSVersion
         /// <returns></returns>
         public static bool operator >=(OSCompare x, OSCompare y)
         {
-            return x is not null && y is not null ? (x.Name == y.Name && x.Serial >= y.Serial) : false;
+            return x is not null && y is not null ?
+                ((x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial >= y.Serial) :
+                false;
         }
 
         /// <summary>
@@ -139,7 +147,7 @@ namespace OSVersion.Lib.OSVersion
         /// <returns></returns>
         public static bool operator ==(OSCompare x, OSCompare y)
         {
-            if (x is not null && y is not null) { return x.Name == y.Name && x.Serial == y.Serial; }
+            if (x is not null && y is not null) { return (x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial == y.Serial; }
             if (x is null && y is null) { return true; }
             return false;
         }
@@ -171,7 +179,7 @@ namespace OSVersion.Lib.OSVersion
         /// <returns></returns>
         public static bool operator !=(OSCompare x, OSCompare y)
         {
-            if (x is not null && y is not null) { return x.Name != y.Name || x.Serial != y.Serial; }
+            if (x is not null && y is not null) { return (x.Name != y.Name && x.OSFamily != OSFamily.Any && y.OSFamily != OSFamily.Any) || x.Serial != y.Serial; }
             if (x is null && y is null) { return false; }
             return true;
         }
@@ -199,6 +207,11 @@ namespace OSVersion.Lib.OSVersion
         /// OSの名前
         /// </summary>
         public virtual string Name { get; set; }
+
+        /// <summary>
+        /// OS種類。Windows/Linux/Mac
+        /// </summary>
+        public virtual OSFamily OSFamily { get; set; }
 
         /// <summary>
         /// 単純なバージョン比較用

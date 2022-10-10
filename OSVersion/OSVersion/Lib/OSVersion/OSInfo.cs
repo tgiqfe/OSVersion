@@ -13,15 +13,15 @@ namespace OSVersion.Lib.OSVersion
         #region Public parameter
 
         /// <summary>
-        /// OS種類。Windows/Linux/Mac
-        /// ※今回のバージョンでは全部Windows
-        /// </summary>
-        public OSFamily OSFamily { get; set; }
-
-        /// <summary>
         /// OSの名前
         /// </summary>
         public override string Name { get; set; }
+
+        /// <summary>
+        /// OS種類。Windows/Linux/Mac
+        /// ※本プロジェクトは今のところ全部Windows
+        /// </summary>
+        public override OSFamily OSFamily { get; set; }
 
         /// <summary>
         /// OS名のエイリアス

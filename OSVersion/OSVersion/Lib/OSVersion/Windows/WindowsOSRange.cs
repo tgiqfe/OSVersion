@@ -30,10 +30,14 @@ namespace OSVersion.Lib.OSVersion.Windows
 
         public bool Within(OSInfo current)
         {
+            /*
             bool minRet = Minimum.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
                 Any(x => x <= current);
             bool maxRet = Maximum.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
                 Any(x => x >= current);
+            */
+            bool minRet = Minimum.Any(x => x <= current);
+            bool maxRet = Maximum.Any(x => x >= current);
 
             return minRet && maxRet;
         }

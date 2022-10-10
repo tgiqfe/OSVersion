@@ -31,6 +31,7 @@ namespace OSVersion.Lib.OSVersion
 
             //  Windows 11
             Add(Windows11.Create21H2());
+            Add(Windows11.Create22H2());
 
             //  Windows Server
             Add(WindowsServer.Create2012());
