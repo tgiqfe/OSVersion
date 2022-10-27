@@ -80,12 +80,29 @@ namespace OSVersion.Lib.OSVersion.Windows
 
         public static OSInfo GetCurrent(OSCollection collection)
         {
-            var mo = new ManagementClass("Win32_OperatingSystem").
-                GetInstances().
-                OfType<ManagementObject>().
-                First();
-            string caption = mo["Caption"]?.ToString();
-            string editionText = caption.Split(" ").Last();
+            string caption = "";
+            string editionText = "";
+            string version = "";
+            try
+            {
+                //  ManagementClassが使用できる場合
+                var mo = new ManagementClass("Win32_OperatingSystem").
+                    GetInstances().
+                    OfType<ManagementObject>().
+                    First();
+                caption = mo["Caption"]?.ToString();
+                editionText = caption.Split(" ").Last();
+                version = mo["Version"]?.ToString() ?? "";
+            }
+            catch
+            {
+                //  ManagementClassが使用できない場合
+                var outTexts = CommandOutput(
+                    "powershell", "-Command \"$os = @(Get-CimInstance Win32_OperatingSystem); $os.Caption; $os.Version\"").ToArray();
+                caption = outTexts[0];
+                editionText = caption.Split(" ").Last();
+                version = outTexts[1];
+            }
 
             bool isServer = IsOS(OS_AnyServer);
             string osName = caption switch
@@ -97,13 +114,44 @@ namespace OSVersion.Lib.OSVersion.Windows
             };
             var winOS = collection.
                 Where(x => x.OSFamily == OSFamily.Windows && (x.ServerOS ?? false) == isServer && x.Name == osName).
-                FirstOrDefault(x => x.VersionName == (mo["Version"]?.ToString() ?? ""));
+                FirstOrDefault(x => x.VersionName == version);
             winOS.Edition = Enum.TryParse(editionText, out Edition tempEdition) ? tempEdition : Edition.None;
 
-            //var ret = winOS.GetType().IsSubclassOf(typeof(OSInfo));
-            //Console.WriteLine(ret);
-
             return winOS;
+        }
+
+        /// <summary>
+        /// ManagementClass使用時に失敗する場合、外部コマンドから情報を収集
+        /// (.NET Framework 4.8のバージョンが低い、等)
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="arguments"></param>
+        /// <param name="containsError"></param>
+        /// <returns></returns>
+        private static IEnumerable<string> CommandOutput(string command, string arguments, bool containsError = false)
+        {
+            var sb = new StringBuilder();
+
+            using (var proc = new System.Diagnostics.Process())
+            {
+                proc.StartInfo.FileName = command;
+                proc.StartInfo.Arguments = arguments;
+                proc.StartInfo.CreateNoWindow = true;
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.StartInfo.RedirectStandardError = true;
+                proc.StartInfo.RedirectStandardInput = false;
+                proc.OutputDataReceived += (sender, e) => { sb.AppendLine(e.Data); };
+                if (containsError) proc.ErrorDataReceived += (sender, e) => { sb.AppendLine(e.Data); };
+                proc.Start();
+                proc.BeginOutputReadLine();
+                if (containsError) proc.BeginErrorReadLine();
+                proc.WaitForExit();
+            }
+
+            return System.Text.RegularExpressions.Regex.Split(sb.ToString(), @"\r?\n").
+                Select(x => x.Trim()).
+                Where(x => !string.IsNullOrEmpty(x));
         }
 
         #endregion
