@@ -235,7 +235,7 @@ namespace OSVersion.Versions.Builder
                 Name = "Windows 11",
                 Alias = new[] { "Windows11", "Windows_11", "Win11" },
                 VersionName = "10.0.22631",
-                VersionAlias = new[] { "22H2", "v22H2", "22631", "2023 Update", "2023Update" },
+                VersionAlias = new[] { "23H2", "v23H2", "22631", "2023 Update", "2023Update" },
                 Serial = SEED_WINDOWS * SEED_WINDOWS_11 + 22631,
             };
         }

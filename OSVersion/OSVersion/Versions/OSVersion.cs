@@ -62,7 +62,7 @@
         /// <returns></returns>
         public static bool operator <(OSVersion x, OSVersion y)
         {
-            return x is not null && y is not null ? (x.Name == y.Name && x.Serial < y.Serial) : false;
+            return x is not null && y is not null ? ((x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial < y.Serial) : false;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@
         /// <returns></returns>
         public static bool operator >(OSVersion x, OSVersion y)
         {
-            return x is not null && y is not null ? (x.Name == y.Name && x.Serial > y.Serial) : false;
+            return x is not null && y is not null ? ((x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial > y.Serial) : false;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@
         /// <returns></returns>
         public static bool operator <=(OSVersion x, OSVersion y)
         {
-            return x is not null && y is not null ? (x.Name == y.Name && x.Serial <= y.Serial) : false;
+            return x is not null && y is not null ? ((x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial <= y.Serial) : false;
         }
 
         /// <summary>
@@ -153,7 +153,7 @@
         /// <returns></returns>
         public static bool operator >=(OSVersion x, OSVersion y)
         {
-            return x is not null && y is not null ? (x.Name == y.Name && x.Serial >= y.Serial) : false;
+            return x is not null && y is not null ? ((x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial >= y.Serial) : false;
         }
 
         /// <summary>
@@ -183,7 +183,7 @@
         /// <returns></returns>
         public static bool operator ==(OSVersion x, OSVersion y)
         {
-            if (x is not null && y is not null) { return x.Name == y.Name && x.Serial == y.Serial; }
+            if (x is not null && y is not null) { return (x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) && x.Serial == y.Serial; }
             if (x is null && y is null) { return true; }
             return false;
         }
@@ -215,7 +215,7 @@
         /// <returns></returns>
         public static bool operator !=(OSVersion x, OSVersion y)
         {
-            if (x is not null && y is not null) { return x.Name != y.Name || x.Serial != y.Serial; }
+            if (x is not null && y is not null) { return (x.Name == y.Name || x.OSFamily == OSFamily.Any || y.OSFamily == OSFamily.Any) || x.Serial != y.Serial; }
             if (x is null && y is null) { return false; }
             return true;
         }
@@ -260,6 +260,11 @@
 
         public bool IsMatch(string keyword)
         {
+            if (this.Name.Equals(keyword, StringComparison.OrdinalIgnoreCase) ||
+                (this.Alias?.Any(x => keyword.Equals(x, StringComparison.OrdinalIgnoreCase)) ?? false))
+            {
+                return true;
+            }
             if (this.VersionName == keyword) return true;
             if (this.VersionAlias?.Any(x => x.Equals(keyword, StringComparison.OrdinalIgnoreCase)) ?? false) return true;
             if ((keyword.StartsWith(this.Name) || (this.Alias?.Any(x => keyword.StartsWith(x)) ?? false)) &&

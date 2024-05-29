@@ -163,8 +163,8 @@ namespace OSVersion.Versions
             var ranges = text.Split(",").Select(x => x.Trim()).Select(x =>
             {
                 (string pre, string suf) = text.Contains("~") ?
-                    (text.Substring(0, text.IndexOf("~")), text.Substring(text.IndexOf("~") + 1)) :
-                    (text, text);
+                    (x.Substring(0, x.IndexOf("~")), x.Substring(x.IndexOf("~") + 1)) :
+                    (x, x);
                 var minumums = string.IsNullOrEmpty(pre) ?
                     new OSVersion[] { AnyOSBuilder.CreateMinimum() } :
                     this.Where(x => x.IsMatch(pre)).ToArray();
@@ -176,9 +176,11 @@ namespace OSVersion.Versions
 
             return ranges.Any(ranges =>
             {
-                var ret_min = ranges.minumums.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
+                var ret_min = ranges.minumums.
+                    Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
                     Any(x => x <= current);
-                var ret_max = ranges.maximums.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
+                var ret_max = ranges.maximums.
+                    Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
                     Any(x => x >= current);
                 return ret_min && ret_max;
             });
