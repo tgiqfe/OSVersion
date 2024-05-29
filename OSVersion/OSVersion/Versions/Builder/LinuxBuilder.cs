@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSVersion.Versions
+namespace OSVersion.Versions.Builder
 {
-    internal class OSVersion_part2
+    internal class LinuxBuilder
     {
     }
 }
