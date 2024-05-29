@@ -3,10 +3,10 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
 
-namespace OSVersion.Versions
+namespace OSVersion.Versions.Functions
 {
     [SupportedOSPlatform("windows")]
-    public class Functions
+    public class WindowsFunctions
     {
         #region Check ServerOS
 

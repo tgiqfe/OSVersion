@@ -1,16 +1,16 @@
 ﻿using OSVersion.Versions.Builder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using OSVersion.Versions.Functions;
+using System.Runtime.InteropServices;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Text.Json;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace OSVersion.Versions
 {
-    internal class OSVersionList : List<OSVersion>
+    internal class OSVersions : List<OSVersion>
     {
+        const string DEFAULT_PATH = "osversions.json";
+
         public void Init()
         {
             //  AnyOS
@@ -53,14 +53,14 @@ namespace OSVersion.Versions
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static OSVersionList Load(string path)
+        public static OSVersions Load(string path = DEFAULT_PATH)
         {
-            OSVersionList collection = null;
+            OSVersions collection = null;
             try
             {
                 using (var sr = new StreamReader(path, Encoding.UTF8))
                 {
-                    collection = JsonSerializer.Deserialize<OSVersionList>(sr.ReadToEnd(), new JsonSerializerOptions()
+                    collection = JsonSerializer.Deserialize<OSVersions>(sr.ReadToEnd(), new JsonSerializerOptions()
                     {
                         //Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                         IgnoreReadOnlyProperties = true,
@@ -84,7 +84,7 @@ namespace OSVersion.Versions
         /// Save to json file.
         /// </summary>
         /// <param name="path"></param>
-        public void Save(string path)
+        public void Save(string path = DEFAULT_PATH)
         {
             string parent = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(parent) && !Directory.Exists(parent))
@@ -110,5 +110,33 @@ namespace OSVersion.Versions
         }
 
         #endregion
+
+        public static OSVersion GetCurrent(OSVersions osVersions = null)
+        {
+            OSVersion osver = null;
+            osVersions ??= OSVersions.Load();
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                //  Windows OS
+#pragma warning disable CA1416
+                (var osName, var caption, var edition, var version, bool isServer) = WindowsFunctions.GetCurrent();
+#pragma warning restore CA1416
+                osver = osVersions.
+                    Where(x => x.OSFamily == OSFamily.Windows && (x.ServerOS ?? false) == isServer && x.Name == osName).
+                    FirstOrDefault(x => x.VersionName == version);
+                osver.Edition = Enum.TryParse(edition, out Edition tempEdition) ? tempEdition : Edition.None;
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                //  Linux os
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                //  Mac os
+            }
+
+            return osver;
+        }
     }
 }
