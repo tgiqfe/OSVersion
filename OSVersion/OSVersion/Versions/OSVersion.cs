@@ -3,10 +3,8 @@
     /// <summary>
     /// Version 4.0
     /// </summary>
-    internal class OSVersion : OSComparer
+    internal partial class OSVersion : OSComparer
     {
-        #region Public parameter
-
         /// <summary>
         /// OS type. [Windows/Linux/Mac/Any]
         /// </summary>
@@ -52,7 +50,7 @@
         /// </summary>
         public override int Serial { get; set; }
 
-        #endregion
+        #region Methods
 
         public bool IsMatch(string keyword)
         {
@@ -67,5 +65,7 @@
         {
             return $"{Name} [ver {VersionName}]";
         }
+
+        #endregion
     }
 }

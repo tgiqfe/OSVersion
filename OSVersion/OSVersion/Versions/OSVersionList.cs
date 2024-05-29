@@ -1,16 +1,15 @@
 ﻿using OSVersion.Versions.Builder;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace OSVersion.Versions
 {
-    internal class OSVersions : List<OSVersion>
+    internal class OSVersionList : List<OSVersion>
     {
         public void Init()
         {
@@ -54,14 +53,14 @@ namespace OSVersion.Versions
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static OSVersions Load(string path)
+        public static OSVersionList Load(string path)
         {
-            OSVersions collection = null;
+            OSVersionList collection = null;
             try
             {
                 using (var sr = new StreamReader(path, Encoding.UTF8))
                 {
-                    collection = JsonSerializer.Deserialize<OSVersions>(sr.ReadToEnd(), new JsonSerializerOptions()
+                    collection = JsonSerializer.Deserialize<OSVersionList>(sr.ReadToEnd(), new JsonSerializerOptions()
                     {
                         //Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                         IgnoreReadOnlyProperties = true,

@@ -2,7 +2,7 @@
 using OSVersion;
 using OSVersion.Versions;
 
-OSVersions.Load("osversions.json");
+OSVersionList.Load("osversions.json");
 
 #pragma warning disable CA1416
 
