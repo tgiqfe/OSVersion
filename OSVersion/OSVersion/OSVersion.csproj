@@ -8,9 +8,4 @@
     <FileVersion>4.0.1</FileVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Versions\Any\" />
-    <Folder Include="Versions\Windows\" />
-  </ItemGroup>
-
 </Project>
