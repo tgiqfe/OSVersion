@@ -1,0 +1,30 @@
+﻿namespace OSVersion.Versions
+{
+    internal enum Edition
+    {
+        None,
+        Home,
+        Pro,
+        Professional,
+        Enterprise,
+        EnterprisePlus,
+        Education,
+        EnterpriseLTSB,
+        EnterpriseLTSC,
+        ProEducation,
+        ProForWorkstations,
+        Standard,
+        Datacenter,
+        Essentials,
+        EssentialPlus,
+        Server,
+        AdvancedServer,
+        DatacenterServer,
+        Web,
+        ComputeCluster,
+        SmallBusiness,
+        StorageServer,
+        Foundation,
+        LTS,
+    }
+}
