@@ -2,10 +2,9 @@
 using OSVersion;
 using OSVersion.Versions;
 
-OSVersions.Load("osversions.json");
+var osver = OSVersions.GetCurrent();
 
-#pragma warning disable CA1416
+Console.WriteLine(osver);
 
-#pragma warning restore CA1416
 
 Console.ReadLine();

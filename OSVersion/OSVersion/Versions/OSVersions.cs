@@ -1,6 +1,8 @@
 ﻿using OSVersion.Versions.Builder;
 using OSVersion.Versions.Functions;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -110,19 +112,18 @@ namespace OSVersion.Versions
         }
 
         #endregion
+        #region Methods
 
-        public static OSVersion GetCurrent(OSVersions osVersions = null)
+        public OSVersion GetCurrent()
         {
             OSVersion osver = null;
-            osVersions ??= OSVersions.Load();
-
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 //  Windows OS
 #pragma warning disable CA1416
                 (var osName, var caption, var edition, var version, bool isServer) = WindowsFunctions.GetCurrent();
 #pragma warning restore CA1416
-                osver = osVersions.
+                osver = this.
                     Where(x => x.OSFamily == OSFamily.Windows && (x.ServerOS ?? false) == isServer && x.Name == osName).
                     FirstOrDefault(x => x.VersionName == version);
                 osver.Edition = Enum.TryParse(edition, out Edition tempEdition) ? tempEdition : Edition.None;
@@ -135,8 +136,60 @@ namespace OSVersion.Versions
             {
                 //  Mac os
             }
-
             return osver;
         }
+
+        public static OSVersion GetCurrent(OSVersions osVersions = null)
+        {
+            osVersions ??= OSVersions.Load();
+            return osVersions.GetCurrent();
+        }
+
+        public OSVersion FromKeyword(string keyword)
+        {
+            return this.FirstOrDefault(x => x.IsMatch(keyword));
+        }
+
+        public static OSVersion FromKeyword(string keyword, OSVersions osVersions = null)
+        {
+            osVersions ??= OSVersions.Load();
+            return osVersions.FromKeyword(keyword);
+        }
+
+        public bool Within(string text, OSVersion current = null)
+        {
+            current ??= GetCurrent();
+
+            var ranges = text.Split(",").Select(x => x.Trim()).Select(x =>
+            {
+                (string pre, string suf) = text.Contains("~") ?
+                    (text.Substring(0, text.IndexOf("~")), text.Substring(text.IndexOf("~") + 1)) :
+                    (text, text);
+                var minumums = string.IsNullOrEmpty(pre) ?
+                    new OSVersion[] { AnyOSBuilder.CreateMinimum() } :
+                    this.Where(x => x.IsMatch(pre)).ToArray();
+                var maximums = string.IsNullOrEmpty(suf) ?
+                    new OSVersion[] { AnyOSBuilder.CreateMaximum() } :
+                    this.Where(x => x.IsMatch(suf)).ToArray();
+                return (minumums, maximums);
+            });
+
+            return ranges.Any(ranges =>
+            {
+                var ret_min = ranges.minumums.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
+                    Any(x => x <= current);
+                var ret_max = ranges.maximums.Where(x => x.OSFamily == OSFamily.Any || x.Name == current.Name).
+                    Any(x => x >= current);
+                return ret_min && ret_max;
+            });
+        }
+
+        public static bool Within(string text, OSVersion current = null, OSVersions osVersions = null)
+        {
+            osVersions ??= OSVersions.Load();
+            return osVersions.Within(text, current);
+        }
+
+        #endregion
     }
 }
