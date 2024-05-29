@@ -3,12 +3,12 @@
     /// <summary>
     /// Version 4.0
     /// </summary>
-    internal class OSInfo : OSComparer
+    internal class OSVersion : OSComparer
     {
         #region Public parameter
 
         /// <summary>
-        /// OS type. [Windows/Linux/Mac]
+        /// OS type. [Windows/Linux/Mac/Any]
         /// </summary>
         public OSFamily OSFamily { get; set; }
 
@@ -50,7 +50,7 @@
         /// <summary>
         /// for simple version compare.
         /// </summary>
-        protected override int Serial { get; }
+        public override int Serial { get; set; }
 
         #endregion
 

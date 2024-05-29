@@ -199,7 +199,7 @@
         /// <summary>
         /// OS serial number (for simple check)
         /// </summary>
-        protected virtual int Serial { get; }
+        public virtual int Serial { get; set; }
 
         public override bool Equals(object obj)
         {
