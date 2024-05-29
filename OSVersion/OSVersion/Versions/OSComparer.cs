@@ -191,16 +191,15 @@
 
         #endregion
 
-
         /// <summary>
-        /// OSの名前
+        /// OS name
         /// </summary>
         public virtual string Name { get; set; }
 
         /// <summary>
-        /// 単純なバージョン比較用
+        /// OS serial number (for simple check)
         /// </summary>
-        protected virtual int Serial { get; }
+        public virtual int Serial { get; set; }
 
         public override bool Equals(object obj)
         {
