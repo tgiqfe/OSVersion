@@ -10,5 +10,6 @@ namespace OSVersion.Versions.Functions
     [SupportedOSPlatform("linux")]
     internal class LinuxFunctions
     {
+        //  Linux用関数を記述
     }
 }

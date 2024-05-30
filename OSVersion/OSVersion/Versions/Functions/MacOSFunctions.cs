@@ -10,5 +10,6 @@ namespace OSVersion.Versions.Functions
     [SupportedOSPlatform("macos")]
     internal class MacOSFunctions
     {
+        //  MacOS用関数を記述
     }
 }

@@ -242,6 +242,11 @@
 
         #region Methods
 
+        /// <summary>
+        /// インスタンス同士の一致確認
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             return obj switch
@@ -253,11 +258,20 @@
             };
         }
 
+        /// <summary>
+        /// ハッシュコード取得
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// キーワードを基に、一致確認
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
         public bool IsMatch(string keyword)
         {
             if (this.Name.Equals(keyword, StringComparison.OrdinalIgnoreCase) ||
@@ -272,6 +286,10 @@
             return false;
         }
 
+        /// <summary>
+        /// インスタンスの文字列表現
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{Name} [ver {VersionName}]";
