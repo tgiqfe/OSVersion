@@ -39,6 +39,7 @@ namespace OSVersion.Versions
             Add(WindowsBuilder.Create11ver21H2());
             Add(WindowsBuilder.Create11ver22H2());
             Add(WindowsBuilder.Create11ver23H2());
+            Add(WindowsBuilder.Create11ver24H2());
 
             //  Windows Server
             Add(WindowsServerBuilder.Create2012());
@@ -46,6 +47,7 @@ namespace OSVersion.Versions
             Add(WindowsServerBuilder.Create2016());
             Add(WindowsServerBuilder.Create2019());
             Add(WindowsServerBuilder.Create2022());
+            Add(WindowsServerBuilder.Create2025());
         }
 
         #region Load/Save

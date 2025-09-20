@@ -5,7 +5,7 @@ using OSVersion.Versions;
 var versions = OSVersions.Load();
 var current = versions.GetCurrent();
 
-//  Windows 11のPCで実行した場合
+//  Windows 11 23H2 のPCで実行した場合
 string range1 = "Windows 10, Windows 11";   //  true
 string range2 = "Windows 11~";              //  true
 string range3 = "Windows 10~Windows 11";    //  false ※同バージョンで比較しないとダメ

@@ -85,6 +85,20 @@ namespace OSVersion.Versions.Builder
             };
         }
 
+        public static OSVersion Create2025()
+        {
+            return new()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows Server",
+                Alias = new[] { "WindowsServer", "Windows SV", "WindowsSV", "WinSV", "WinSrv" },
+                VersionName = "10.0.26100",
+                VersionAlias = new[] { "2025", "26100", "Windows Server 2025", "WindowsSevrer2025", "WinSrv2025", "Win2025", "NT 10.0.26100", "NT10.0.26100" },
+                ServerOS = true,
+                Serial = SEED_WINDOWS * SEED_WINDOWS_SERVER + 26100,
+            };
+        }
+
         #endregion
     }
 }
