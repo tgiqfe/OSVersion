@@ -128,7 +128,8 @@ namespace OSVersion.Versions
                 osver = this.
                     Where(x => x.OSFamily == OSFamily.Windows && (x.ServerOS ?? false) == isServer && x.Name == osName).
                     FirstOrDefault(x => x.VersionName == version);
-                osver.Edition = Enum.TryParse(edition, out Edition tempEdition) ? tempEdition : Edition.None;
+                //osver.Edition = Enum.TryParse(edition, out Edition tempEdition) ? tempEdition : Edition.None;
+                osver.Edition = EditionHelper.Parse(edition);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {

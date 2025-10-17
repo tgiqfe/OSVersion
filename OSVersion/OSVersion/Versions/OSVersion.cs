@@ -274,7 +274,7 @@
 
         public override string ToString()
         {
-            return $"{Name} [ver {VersionName}]";
+            return $"{Name} {Edition} [ver {VersionName}]";
         }
 
         #endregion
