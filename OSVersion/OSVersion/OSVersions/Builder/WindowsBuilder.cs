@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSVersion.Versions.Builder
+namespace OSVersion.OSVersions.Builder
 {
     internal class WindowsBuilder
     {
@@ -250,6 +250,19 @@ namespace OSVersion.Versions.Builder
                 VersionName = "10.0.26100",
                 VersionAlias = new[] { "24H2", "v24H2", "26100", "2024 Update", "2024Update" },
                 Serial = SEED_WINDOWS * SEED_WINDOWS_11 + 26100,
+            };
+        }
+
+        public static OSVersion Create11ver25H2()
+        {
+            return new()
+            {
+                OSFamily = OSFamily.Windows,
+                Name = "Windows 11",
+                Alias = new[] { "Windows11", "Windows_11", "Win11" },
+                VersionName = "10.0.26200",
+                VersionAlias = new[] { "25H2", "v25H2", "26200", "2025 Update", "2025Update" },
+                Serial = SEED_WINDOWS * SEED_WINDOWS_11 + 26500,
             };
         }
 

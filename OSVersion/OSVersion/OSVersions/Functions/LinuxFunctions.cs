@@ -5,10 +5,10 @@ using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSVersion.Versions.Functions
+namespace OSVersion.OSVersions.Functions
 {
-    [SupportedOSPlatform("macos")]
-    internal class MacOSFunctions
+    [SupportedOSPlatform("linux")]
+    internal class LinuxFunctions
     {
     }
 }

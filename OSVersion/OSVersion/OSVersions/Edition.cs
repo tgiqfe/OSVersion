@@ -1,4 +1,4 @@
-﻿namespace OSVersion.Versions
+﻿namespace OSVersion.OSVersions
 {
     /// <summary>
     /// Version 4.0

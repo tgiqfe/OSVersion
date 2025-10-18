@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace OSVersion.Versions
+namespace OSVersion.OSVersions
 {
     internal class OSVersions : List<OSVersion>
     {
@@ -36,6 +36,7 @@ namespace OSVersion.Versions
             Add(Builder.WindowsBuilder.Create11ver22H2());
             Add(Builder.WindowsBuilder.Create11ver23H2());
             Add(Builder.WindowsBuilder.Create11ver24H2());
+            Add(Builder.WindowsBuilder.Create11ver25H2());
 
             //  Windows Server
             Add(Builder.WindowsServerBuilder.Create2012());

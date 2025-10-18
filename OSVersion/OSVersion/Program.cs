@@ -1,6 +1,6 @@
 ﻿
 using OSVersion;
-using OSVersion.Versions;
+using OSVersion.OSVersions;
 
 var versions = OSVersions.Load();
 var current = versions.GetCurrent();

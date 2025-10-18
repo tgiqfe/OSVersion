@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
 
-namespace OSVersion.Versions.Functions
+namespace OSVersion.OSVersions.Functions
 {
     [SupportedOSPlatform("windows")]
     public class WindowsFunctions
