@@ -1,8 +1,4 @@
-﻿using OSVersion.Versions.Builder;
-using OSVersion.Versions.Functions;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -16,38 +12,38 @@ namespace OSVersion.Versions
         public void Init()
         {
             //  AnyOS
-            Add(AnyOSBuilder.CreateMinimum());
-            Add(AnyOSBuilder.CreateMaximum());
+            Add(Builder.AnyOSBuilder.CreateMinimum());
+            Add(Builder.AnyOSBuilder.CreateMaximum());
 
             //  Windows 10
-            Add(WindowsBuilder.Create10ver1507());
-            Add(WindowsBuilder.Create10ver1511());
-            Add(WindowsBuilder.Create10ver1607());
-            Add(WindowsBuilder.Create10ver1703());
-            Add(WindowsBuilder.Create10ver1709());
-            Add(WindowsBuilder.Create10ver1803());
-            Add(WindowsBuilder.Create10ver1809());
-            Add(WindowsBuilder.Create10ver1903());
-            Add(WindowsBuilder.Create10ver1909());
-            Add(WindowsBuilder.Create10ver2004());
-            Add(WindowsBuilder.Create10ver20H2());
-            Add(WindowsBuilder.Create10ver21H1());
-            Add(WindowsBuilder.Create10ver21H2());
-            Add(WindowsBuilder.Create10ver22H2());
+            Add(Builder.WindowsBuilder.Create10ver1507());
+            Add(Builder.WindowsBuilder.Create10ver1511());
+            Add(Builder.WindowsBuilder.Create10ver1607());
+            Add(Builder.WindowsBuilder.Create10ver1703());
+            Add(Builder.WindowsBuilder.Create10ver1709());
+            Add(Builder.WindowsBuilder.Create10ver1803());
+            Add(Builder.WindowsBuilder.Create10ver1809());
+            Add(Builder.WindowsBuilder.Create10ver1903());
+            Add(Builder.WindowsBuilder.Create10ver1909());
+            Add(Builder.WindowsBuilder.Create10ver2004());
+            Add(Builder.WindowsBuilder.Create10ver20H2());
+            Add(Builder.WindowsBuilder.Create10ver21H1());
+            Add(Builder.WindowsBuilder.Create10ver21H2());
+            Add(Builder.WindowsBuilder.Create10ver22H2());
 
             //  Windows 11
-            Add(WindowsBuilder.Create11ver21H2());
-            Add(WindowsBuilder.Create11ver22H2());
-            Add(WindowsBuilder.Create11ver23H2());
-            Add(WindowsBuilder.Create11ver24H2());
+            Add(Builder.WindowsBuilder.Create11ver21H2());
+            Add(Builder.WindowsBuilder.Create11ver22H2());
+            Add(Builder.WindowsBuilder.Create11ver23H2());
+            Add(Builder.WindowsBuilder.Create11ver24H2());
 
             //  Windows Server
-            Add(WindowsServerBuilder.Create2012());
-            Add(WindowsServerBuilder.Create2012R2());
-            Add(WindowsServerBuilder.Create2016());
-            Add(WindowsServerBuilder.Create2019());
-            Add(WindowsServerBuilder.Create2022());
-            Add(WindowsServerBuilder.Create2025());
+            Add(Builder.WindowsServerBuilder.Create2012());
+            Add(Builder.WindowsServerBuilder.Create2012R2());
+            Add(Builder.WindowsServerBuilder.Create2016());
+            Add(Builder.WindowsServerBuilder.Create2019());
+            Add(Builder.WindowsServerBuilder.Create2022());
+            Add(Builder.WindowsServerBuilder.Create2025());
         }
 
         #region Load/Save
@@ -123,7 +119,7 @@ namespace OSVersion.Versions
             {
                 //  Windows OS
 #pragma warning disable CA1416
-                (var osName, var caption, var edition, var version, bool isServer) = WindowsFunctions.GetCurrent();
+                (var osName, var caption, var edition, var version, bool isServer) = Functions.WindowsFunctions.GetCurrent();
 #pragma warning restore CA1416
                 osver = this.
                     Where(x => x.OSFamily == OSFamily.Windows && (x.ServerOS ?? false) == isServer && x.Name == osName).
@@ -169,10 +165,10 @@ namespace OSVersion.Versions
                     (x.Substring(0, x.IndexOf("~")), x.Substring(x.IndexOf("~") + 1)) :
                     (x, x);
                 var minumums = string.IsNullOrEmpty(pre) ?
-                    new OSVersion[] { AnyOSBuilder.CreateMinimum() } :
+                    new OSVersion[] { Builder.AnyOSBuilder.CreateMinimum() } :
                     this.Where(x => x.IsMatch(pre)).ToArray();
                 var maximums = string.IsNullOrEmpty(suf) ?
-                    new OSVersion[] { AnyOSBuilder.CreateMaximum() } :
+                    new OSVersion[] { Builder.AnyOSBuilder.CreateMaximum() } :
                     this.Where(x => x.IsMatch(suf)).ToArray();
                 return (minumums, maximums);
             });
